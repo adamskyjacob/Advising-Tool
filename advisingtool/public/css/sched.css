@@ -1,0 +1,187 @@
+
+:root {
+    --menu-bg: gray;
+    --menu-font-color: #FFFFFF;
+    --menu-border: black;
+    --menu-bg-selected: #333333;
+    --menu-bg-hover: #52dcff;
+    --menu-bg-selected-chevron: #3cac1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: inherit;
+    height: inherit;
+}
+
+.menubutton {
+    display: flex;
+    cursor: pointer;
+}
+
+button.menubutton {
+    margin: 0px 0px 0px 20px;
+    content: "";
+    border: none;
+    background-color: transparent;
+    display: inline-block;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 25px;
+    height: 2px;
+    background-color: #FFFFFF;
+    margin: 7px 0;
+    transition: 0.4s;
+}
+/* Rotate first bar */
+.menubutton.active .bar1 {
+    transform: translate(0, 9px) rotate(-45deg);
+}
+
+/* Fade out the second bar */
+.menubutton.active .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.menubutton.active .bar3 {
+    transform: translate(0, -9px) rotate(45deg);
+}
+
+.menu {
+    margin: 0 50px;
+    display: none;
+    flex-flow: row;
+    width: 80px;
+    border-radius: 0rem;
+    background: var(--menu-bg);
+}
+.btn-menu {
+    position: relative;
+    cursor: pointer;
+    background: var(--menu-bg);
+    border: none;
+    padding: 2rem;
+    color: var(--menu-font-color);
+    font-weight: 700;
+    border-right: 0.1rem solid var(--menu-border);
+    border-left: 0.1rem solid var(--menu-border);
+    transition: background 1s;
+}
+
+    .btn-menu:hover {
+        background: var(--menu-bg-hover);
+    }
+
+    .btn-menu:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+.selected {
+    background: var(--menu-bg-selected);
+}
+
+.year {
+    font: bold 20px 'Consolas';
+    border: 2px solid darkgray;
+    display: inline-grid;
+    width: fit-content;
+    padding: 10px 10px 10px 10px;
+}
+
+.term {
+    font: bold 16px 'Consolas';
+    border: 1px solid black;
+    width: max-content;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 15px 5px 15px;
+}
+
+.course {
+    min-width: 80px;
+    display: inline-block;
+    font: bold 14px 'Consolas';
+    border: 2px solid darkgray;
+    color: black;
+    background-color: #cfcfcf;
+    width: min-content;
+    padding: 2px 2px 2px 2px;
+    margin:10px;
+}
+
+    .course:hover {
+        background-color: #bfbfbf;
+        cursor: pointer;
+    }
+
+.fresh, .soph, .juni, .seni {
+    display: none;
+}
+
+    .fresh.active {
+        display: inline-grid;
+    }
+
+    .soph.active {
+        display: inline-grid;
+    }
+
+    .juni.active {
+        display: inline-grid;
+    }
+
+    .seni.active {
+        display: inline-grid;
+    }
+
+.schedule {
+    display: inline-flex;
+    width: stretch;
+    justify-content: center;
+    height: stretch;
+}
+
+.cyclefresh.active {
+    background-color: darkgray;
+}
+
+.cyclesoph.active {
+    background-color: darkgray;
+}
+
+.cyclejuni.active {
+    background-color: darkgray;
+}
+
+.cycleseni.active {
+    background-color: darkgray;
+}
+
+
+.yearbtn {
+    text-align: center;
+    display: grid;
+    width: 200px;
+}
+
+    .yearbtn .cycle {
+        padding: 10px 10px 10px 10px;
+        border: none;
+        cursor: pointer;
+        font: normal 20px 'Consolas';
+    }
+
+        .yearbtn .cycle:hover {
+            background-color: darkgray;
+        }
+
+.padding {
+    width: 25px;
+}

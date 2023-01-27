@@ -1,0 +1,262 @@
+
+:root {
+    --menu-bg: gray;
+    --menu-font-color: #FFFFFF;
+    --menu-border: black;
+    --menu-bg-selected: #333333;
+    --menu-bg-hover: #52dcff;
+    --menu-bg-selected-chevron: #3cac1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: inherit;
+    height: inherit;
+}
+
+.menubutton {
+    display: flex;
+    cursor: pointer;
+}
+
+button.menubutton {
+    margin: 0px 0px 0px 20px;
+    content: "";
+    border: none;
+    background-color: transparent;
+    display: inline-block;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 25px;
+    height: 2px;
+    background-color: #FFFFFF;
+    margin: 7px 0;
+    transition: 0.4s;
+}
+/* Rotate first bar */
+.menubutton.active .bar1 {
+    transform: translate(0, 9px) rotate(-45deg);
+}
+
+/* Fade out the second bar */
+.menubutton.active .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.menubutton.active .bar3 {
+    transform: translate(0, -9px) rotate(45deg);
+}
+
+.menu {
+    margin: 0 50px;
+    display: none;
+    flex-flow: row;
+    width: 80px;
+    border-radius: 0rem;
+    background: var(--menu-bg);
+}
+
+.btn-menu {
+    position: relative;
+    cursor: pointer;
+    background: var(--menu-bg);
+    border: none;
+    padding: 2rem;
+    color: var(--menu-font-color);
+    font-weight: 700;
+    border-right: 0.1rem solid var(--menu-border);
+    border-left: 0.1rem solid var(--menu-border);
+    transition: background 1s;
+}
+
+    .btn-menu:hover {
+        background: var(--menu-bg-hover);
+    }
+
+    .btn-menu:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+.selected {
+    background: var(--menu-bg-selected);
+}
+
+/*------------------------------------------------------*/
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.undervsgrad {
+    display: table-cell;
+    padding: 100px;
+}
+
+a {
+    display: inline-block;
+    background-color: white;
+    text-decoration: none;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-top: 10%;
+    fill: gray;
+    font-size: 15px;
+    font-family: 'Microsoft Sans Serif';
+    font-weight: 600;
+    padding: 15px 30px 15px 30px;
+    border: 2px solid gray;
+    height: auto;
+    width: auto;
+}
+
+    a button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+        a button:hover {
+            color: gray;
+        }
+
+    a:hover {
+        border: 2px solid lightgray;
+        cursor: pointer;
+        color: gray;
+    }
+
+.wpilink {
+    display: none;
+}
+
+    .wpilink.active {
+        display: flex;
+        margin-top: 180px;
+        margin-left: 0;
+    }
+
+    .wpilink:hover .wpibutton {
+        cursor: pointer;
+        color: gray;
+    }
+/*111111111111111111111111111111111*/
+
+.scheduling {
+    width: 300px;
+    height: stretch;
+    border: groove;
+    padding-left: 5px;
+}
+
+.sidebtn {
+    display: none;
+    height: min-content;
+    cursor: pointer;
+}
+
+.sidemenu {
+    display: grid;
+    visibility: hidden;
+    background-color: gray;
+    height: stretch;
+    width: 0px;
+    transition: linear 1s;
+}
+
+    .sidemenu .sidebtn {
+        display: grid;
+        opacity: 0;
+    }
+
+    .sidemenu.active {
+        visibility: visible;
+        transition: linear 1s;
+        width: 350px;
+    }
+
+        .sidemenu.active .sidebtn.active {
+            opacity: 1;
+            display: block;
+            background-color: darkgray;
+            border: none;
+            color: white;
+            padding: 12px 0px 12px 0px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            transition: linear 1s;
+        }
+
+
+select {
+    margin: 5px;
+    width: 270px;
+    padding: 5px 5px 5px 10px;
+    font-size: 16px;
+    border: 1px solid #CCC;
+    height: 40px;
+    appearance: none;
+}
+
+.mybutton {
+    background-color: #12db00;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 10px 10px 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+    .mybutton:hover {
+        background-color: #0fb800;
+        color: lightgray;
+    }
+
+.footer {
+    display: flex;
+}
+
+.course {
+    font: normal 20px arial;
+    border: none;
+    color: black;
+    background-color: lightgray;
+    padding: 5px 5px 5px 5px;
+    width: fit-content;
+    height: 100%;
+    border: 2px groove black;
+    max-width:400px;
+}
+
+    .course .courseinfo {
+        padding: 5px 5px 5px 5px;
+        display: block;
+        align-content: center;
+    }
+
+.prereq {
+    width:min-content;
+    border: none;
+    color: white;
+    padding: 8px 12px 8px 12px;
+    margin: 10px 15px 10px 15px;
+    background-color: #2f2f2f;
+}
+
+    .prereq:hover {
+        background-color: #3f3f3f;
+        cursor: pointer;
+    }

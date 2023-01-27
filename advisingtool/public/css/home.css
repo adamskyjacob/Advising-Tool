@@ -1,0 +1,139 @@
+
+:root {
+    --menu-bg: gray;
+    --menu-font-color: #FFFFFF;
+    --menu-border: black;
+    --menu-bg-selected: #333333;
+    --menu-bg-hover: #52dcff;
+    --menu-bg-selected-chevron: #3cac1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: max-content;
+}
+
+body {
+    width: inherit;
+    height: inherit;
+}
+
+.menubutton {
+    display: flex;
+    cursor: pointer;
+}
+
+button.menubutton {
+    margin: 0px 0px 0px 20px;
+    content: "";
+    border: none;
+    background-color: transparent;
+    display: grid;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 25px;
+    height: 3px;
+    background-color: #FFFFFF;
+    margin: 3px 0;
+    transition: 0.4s;
+}
+/* Rotate first bar */
+.menubutton.active .bar1 {
+    transform: translate(0, 9px) rotate(-45deg);
+}
+
+/* Fade out the second bar */
+.menubutton.active .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.menubutton.active .bar3 {
+    transform: translate(0, -9px) rotate(45deg);
+}
+
+.menu {
+    margin: 0 50px;
+    display: none;
+    flex-flow: row;
+    width: 80px;
+    border-radius: 0rem;
+    background: var(--menu-bg);
+}
+
+.btn-menu {
+    position: relative;
+    cursor: pointer;
+    background: var(--menu-bg);
+    border: none;
+    padding: 2rem;
+    color: var(--menu-font-color);
+    font-weight: 700;
+    border-right: 0.1rem solid var(--menu-border);
+    border-left: 0.1rem solid var(--menu-border);
+    transition: background 1s;
+}
+
+    .btn-menu:hover {
+        background: var(--menu-bg-hover);
+    }
+
+    .btn-menu:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+.selected {
+    background: var(--menu-bg-selected);
+}
+
+/*------------------------------------------------------*/
+
+.undervsgrad {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+    .undervsgrad .gradspacer {
+        width: 50px;
+    }
+
+    .undervsgrad button {
+        width: fit-content;
+        background-color: white;
+        padding: 15px 30px 15px 30px;
+        border: 2px solid darkgray;
+        cursor: pointer;
+        margin-top: 100px;
+        border-radius: 4px;
+    }
+
+        .undervsgrad button:hover {
+            border: 2px solid black;
+            background-color: lightgray;
+            cursor: pointer;
+        }
+
+.undergradschedule {
+    border: 5px inset black;
+    height: 100px;
+}
+
+.wpilink {
+    display: none;
+}
+
+    .wpilink.active {
+        display: flex;
+        margin-top: 180px;
+        margin-left: 0;
+    }
+
+    .wpilink:hover .wpibutton {
+        cursor: pointer;
+        color: gray;
+    }

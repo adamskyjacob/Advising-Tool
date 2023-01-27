@@ -1,0 +1,195 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+* {
+    width: 100%;
+}
+
+header {
+    font-family: 'Microsoft Sans Serif';
+    color: white;
+    display: flex;
+    padding-left: 20px;
+    height: 60px;
+    align-items: center;
+    justify-items: center;
+    background-color: #AC2B37;
+}
+
+body {
+    display: inline-flex;
+    width: fit-content;
+    width: 100%;
+    height: 100%;
+}
+
+.menubutton {
+    margin: 0px 0px 0px 20px;
+    content: "";
+    border: none;
+    background-color: transparent;
+    display: inline-flow;
+    width: fit-content;
+    cursor:pointer;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 25px;
+    height: 2px;
+    background-color: #FFFFFF;
+    margin: 7px 0;
+    transition: 0.4s;
+}
+/* Rotate first bar */
+.menubutton.active .bar1 {
+    transform: translate(0, 9px) rotate(-45deg);
+}
+/* Fade out the second bar */
+.menubutton.active .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.menubutton.active .bar3 {
+    transform: translate(0, -9px) rotate(45deg);
+}
+
+.sidebtn {
+    color:gray;
+    display: block;
+    background-color: gray;
+    border: none;
+    padding: 12px 0px 12px 0px;
+    text-align: center;
+    text-decoration: none;
+    transition: linear 1s;
+    cursor: pointer;
+}
+
+.sidemenu {
+    height: auto;
+    min-height: 100% !important;
+    overflow: clip;
+    display: block;
+    background-color: gray;
+    width: 0px;
+    transition: linear 1s;
+}
+
+    .sidemenu.active .sidebtn {
+        display: grid;
+        transition: linear 1s;
+        color: white;
+    }
+
+    .sidemenu.active {
+        transition: linear 1s;
+        width: 200px;
+    }
+
+
+select {
+    margin: 5px;
+    width: 270px;
+    padding: 5px 5px 5px 10px;
+    font-size: 16px;
+    border: 1px solid #CCC;
+    height: 40px;
+    appearance: none;
+}
+
+.mybutton {
+    background-color: #12db00;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 10px 10px 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+    .mybutton:hover {
+        background-color: #0fb800;
+        color: lightgray;
+    }
+
+.footer {
+    display: flex;
+}
+
+
+.menu {
+    margin: 0 50px;
+    display: none;
+    flex-flow: row;
+    width: 80px;
+    border-radius: 0rem;
+    background: var(--menu-bg);
+}
+
+.btn-menu {
+    position: relative;
+    cursor: pointer;
+    background: var(--menu-bg);
+    border: none;
+    padding: 2rem;
+    color: var(--menu-font-color);
+    font-weight: 700;
+    border-right: 0.1rem solid var(--menu-border);
+    border-left: 0.1rem solid var(--menu-border);
+    transition: background 1s;
+}
+
+    .btn-menu:hover {
+        background: var(--menu-bg-hover);
+    }
+
+    .btn-menu:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+.selected {
+    background: var(--menu-bg-selected);
+}
