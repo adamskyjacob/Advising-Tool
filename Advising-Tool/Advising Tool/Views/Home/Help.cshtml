@@ -1,0 +1,48 @@
+﻿@model HelpMessage
+
+<head>
+    <link rel="stylesheet" href="~/css/help.css" asp-append-version="true" />
+    <link rel="icon" href="./favicon.ico" />
+    <title>Help</title>
+</head>
+<body>
+    <div class="issuesubmit">
+        <label class="issuelabel">Issue Submission</label>
+        <form asp-action="SubmitHelpMessage" class="form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="subsect">
+                <label>Email:</label><br>
+                <input id="name" type="text" asp-for="NAME" required placeholder="Please provide us with your WPI email."><br>
+                <span asp-validation-for="NAME" class="text-danger"></span>
+            </div>
+            <div class="subsect">
+                <label>Issue:</label><br>
+                <textarea id="issue" maxlength=1000 asp-for="MESSAGE" required placeholder="Please provide a detailed description of the issue, i.e what you did to cause it, what degree you were working on, etc."> </textarea>
+                <span asp-validation-for="MESSAGE" class="text-danger"></span>
+            </div>
+            <div class="hiddenstuff">
+                <textarea asp-for="TIMESTAMP" id="timestamp" hidden required></textarea>
+                <span asp-validation-for="TIMESTAMP" class="text-danger"></span>
+                <input id="submit" type="submit" hidden>
+            </div>
+            <button onclick="submitForm()" type="button">Submit</button>
+        </form>
+    </div>
+</body>
+<script>
+    function submitForm(){
+        var date = new Date();
+        var datetime = date.getUTCFullYear() + "-" + getMonth() + "-" + date.getUTCDate() + " " + date.getUTCHours() + "-" + date.getUTCMinutes() + "-" + date.getUTCSeconds();
+        document.getElementById("timestamp").textContent = datetime;
+        document.getElementById("submit").click();
+
+        function getMonth() {
+            var currentMonth = date.getUTCMonth() + 1;
+            if(currentMonth < 10){
+                return "0" + currentMonth;
+            } else {
+                return String(currentMonth);
+            }
+        }
+    }
+</script>

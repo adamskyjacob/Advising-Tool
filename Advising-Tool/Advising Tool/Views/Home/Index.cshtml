@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+<div class="undervsgrad">
+    <div class="undergrad">
+        <button onclick="location.href = '/Undergraduate-Scheduling'">
+            Undergraduate Scheduling
+        </button>
+        <div class="description">
+            For more information on WPI's undergraduate programs, please visit the official WPI undergraduate studies information page at <a target="_blank" href="https://www.wpi.edu/academics/undergraduate">https://www.wpi.edu/academics/undergraduate</a>. For a list of all undegraduate courses offered at WPI, click <a target="_blank" href="/Undergraduate-Catalog">here</a>.
+        </div>
+    </div>
+    <div class="gradspacer"></div>
+    <div class="grad">
+        <button onclick="location.href = '/Graduate-Scheduling'">
+            Graduate Scheduling
+            </button>
+        <div class="description">
+            For more information on WPI's undergraduate programs, please visit the official WPI graduate and professional studies information page at <a target="_blank" href="https://www.wpi.edu/academics/graduate">https://www.wpi.edu/academics/graduate</a>. For a list of all graduate courses offered at WPI, click <a target="_blank"  href="/Graduate-Catalog">here</a>.
+        </div>
+    </div>
+    <div class="gradspacer"></div>
+    <div class="grad">
+        <button onclick="location.href = '/General-Scheduling'">
+            Graduate General Scheduling
+            </button>
+        <div class="description">
+            Here, you can choose whatever courses you want and add them to a semester-based schedule. There currently is no option for undegraduate courses.
+        </div>
+    </div>
+    <div class="gradspacer"></div>
+    <div class="bsms">
+        <div class="description">
+            If you wish to enroll in the BS/MS program, visit the official WPI BS/MS page at <a target="_blank" href="https://www.wpi.edu/academics/undergraduate/bachelors-masters-degree">this link.</a> Both BS and MS degrees are available here, but certain degrees may have overlap and double counted courses which this does not take account for. It is also advised that you contact your academic advisor for more information.     
+        </div>
+    </div>
+</div>

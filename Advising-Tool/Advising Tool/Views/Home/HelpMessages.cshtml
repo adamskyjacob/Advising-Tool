@@ -1,0 +1,48 @@
+﻿@using static Advising_Tool.Views.Home.Functions
+@using System.Text.Json
+
+@model List<HelpMessage>
+
+<head>
+    <link rel="stylesheet" href="~/css/helpmsgs.css" asp-append-version="true" />
+    <link rel="icon" href="./favicon.ico" />
+    <script src="~/js/help.js"></script>
+    <title>Help Messages</title>
+</head>
+<body>
+    <div class="search">
+        <label class="searchlabel">
+            Message Search
+        </label>
+        <div class="searchoptions">
+            <div class="timestamp option">
+                <label>When</label>
+                <input type="text" />
+            </div>
+            <div class="contents option">
+                <label>What</label>
+                <input type="text" />
+            </div>
+            <div class="whosent option">
+                <label>Who</label>
+                <input type="text" />
+            </div>
+        </div>
+    </div>
+    <div class="messages">
+        @foreach (HelpMessage msg in Model)
+        {
+            <div class="msg">
+                <label class="who">
+                    @msg.NAME
+                </label>
+                <label class="when">
+                    @msg.TIMESTAMP
+                </label>
+                <label class="what">
+                    @msg.MESSAGE
+                </label>
+            </div>
+        }
+    </div>
+</body>

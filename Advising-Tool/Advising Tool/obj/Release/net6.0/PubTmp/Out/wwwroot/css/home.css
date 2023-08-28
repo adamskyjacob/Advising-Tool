@@ -1,0 +1,67 @@
+
+:root {
+    --menu-bg: gray;
+    --menu-font-color: #FFFFFF;
+    --menu-border: black;
+    --menu-bg-selected: #333333;
+    --menu-bg-hover: #52dcff;
+    --menu-bg-selected-chevron: #3cac1a;
+}
+
+body {
+    width: inherit;
+    height: inherit;
+}
+
+.undervsgrad {
+    display: grid;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: max-content;
+}
+
+    .undervsgrad .gradspacer {
+        width: 50px;
+    }
+
+    .undervsgrad button {
+        width: fit-content;
+        background-color: white;
+        padding: 15px 30px 15px 30px;
+        border: 2px outset black;
+        cursor: pointer;
+    }
+
+        .undervsgrad button:hover {
+            background-color: darkgray;
+            border: 2px inset black;
+            cursor: pointer;
+        }
+
+.undergrad, .grad, .bsms{
+    border: 2px solid gray;
+    border-radius: 25px;
+    background: #e0e0e0;
+    min-width: 60vw;
+    width: min-content;
+    height: min-content;
+    margin-top: 40px;
+    padding: 12px 20px;
+    text-align: center;
+}
+
+    .undergrad button, .grad button {
+        display: inline-block;
+        font-weight: 500;
+        font-size: 21px;
+        width: max-content;
+        border-radius: 15px;
+    }
+
+    .undergrad .description, .grad .description {
+        margin-top: 20px;
+        text-align: center;
+    }

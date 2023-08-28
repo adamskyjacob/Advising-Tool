@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<noscript>
+    For full functionality of this site it is necessary to enable JavaScript.
+    Here are the <a href="https://www.enablejavascript.io/">
+        instructions how to enable JavaScript in your web browser
+    </a>.
+</noscript>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="pagetop" onclick="window.scrollTo(0, 0)">
+        ^
+    </div>
+    <header class="header">
+        <div class="layoutspacer"></div>
+        <div class="homebutton" onclick="window.location.href = '/Home'">HOME</div>
+        <button class="menubutton" onclick="clickMenu()">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </button>
+        <div class="logodiv">
+            <a href="https://www.wpi.edu" target="_blank">
+                <img src="/logo.png" class="logo" />
+            </a>
+        </div>
+        <div class="layoutspacer"></div>
+    </header>
+    <div class="sidemenu">
+        <button class="sidebtn" onclick="location.href = '/Home'">Homepage</button>
+        <button class="sidebtn" onclick="location.href = '/Graduate-Scheduling'">Graduate Scheduling</button>
+        <button class="sidebtn" onclick="location.href = '/Graduate-Catalog'">Graduate Catalog</button>
+        <button class="sidebtn" onclick="location.href = '/Undergraduate-Scheduling'">Undergraduate Scheduling</button>
+        <button class="sidebtn" onclick="location.href = '/Undergraduate-Catalog'">Undergraduate Catalog</button>
+        <button class="sidebtn" onclick="location.href = '/General-Scheduling'">General Scheduling</button>
+        <button class="sidebtn" onclick="location.href = '/Administration'">Administration</button>
+        <button class="sidebtn" onclick="location.href = '/Help'">Help</button> 
+    </div>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+<script>
+    var sidebar = document.querySelector(".sidemenu");
+    sidebar.style.width = '0px';
+    function clickMenu() {
+        if (sidebar.style.width === '0px') {
+            sidebar.style.width = '240px';
+        } else {
+            sidebar.style.width = '0px';
+        }
+        document.querySelector(".menubutton").classList.toggle("active")
+    }
+</script>
+</html>

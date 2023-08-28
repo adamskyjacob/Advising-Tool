@@ -1,0 +1,807 @@
+﻿
+.courseselection {
+    margin: 30px 0px;
+    padding: 16px;
+    max-height: 80vh;
+    width: 98%;
+    margin-left: 1%;
+}
+
+    .courseselection .courses {
+        overflow-y: scroll;
+        max-height: 70vh;
+    }
+
+.prereqlabel {
+    font-weight: 700;
+}
+
+
+.degreeinfo {
+    width: 100%;
+    display: inline-flex;
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .degreeinfo .label {
+        width: 50%;
+        font-size: 20px;
+        color: black;
+    }
+
+        .degreeinfo .label .title {
+            font-weight: 700;
+        }
+
+        .degreeinfo .label i {
+            font-weight: 500;
+        }
+
+.butselbar {
+    width: 90%;
+    display: inline-flex;
+    margin-top: 20px;
+    margin-left: 5%;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    border: 3px solid #85202d;
+    border-radius: 12px;
+    user-select: none;
+}
+
+    .butselbar .butsel {
+        background-color: #b01c2f;
+        padding: 7px 11px;
+        color: gray;
+        width: 50%;
+    }
+
+        .butselbar .butsel:hover {
+            cursor: pointer;
+            background: #9b1e2e;
+        }
+
+        .butselbar .butsel:first-of-type {
+            border-start-start-radius: 8px;
+            border-end-start-radius: 8px;
+        }
+
+        .butselbar .butsel:last-of-type {
+            border-end-end-radius: 8px;
+            border-start-end-radius: 8px;
+        }
+
+        .butselbar .butsel[active=true] {
+            color: white;
+            background: #811826;
+        }
+
+.selectionbuttons {
+    user-select: none;
+    width: 80%;
+    background: gray;
+    margin: 20px 10%;
+    display: inline-flex;
+    text-align: center;
+    border: 2px solid #454545;
+    border-radius: 12px;
+    font-size: 20px;
+    color: #141414;
+    font-weight: 600;
+}
+
+    .selectionbuttons .selectionbutton {
+        cursor: pointer;
+        background: gray;
+        border-radius: 11px;
+        width: 100%;
+    }
+
+        .selectionbuttons .selectionbutton[active=true] {
+            background-color: dimgray;
+        }
+
+        .selectionbuttons .selectionbutton[active=false]:hover {
+            background-color: #707070
+        }
+
+.coursesarea {
+    border: 2px solid black;
+    width: 86%;
+    margin: 12px 0px 12px 7%;
+    padding: 17px 22px;
+}
+
+    .coursesarea .minimize {
+        font-family: monospace,monospace;
+        font-weight: 800;
+        transform: scale(1.5);
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-radius: 16px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: 10px;
+        margin-right: 25px;
+    }
+
+        .coursesarea .minimize:hover {
+            background: #89202f;
+            cursor: pointer;
+        }
+
+    .coursesarea .arealabel {
+        border: 2px solid black;
+        border-radius: 12px;
+        background: #a42536;
+        padding: 8px 12px;
+        font-size: 18px;
+        font-weight: 600;
+        color: black;
+    }
+
+    .coursesarea .areacourses {
+        margin-top: 20px;
+        color: black;
+    }
+
+.coursegroup {
+    margin: 5px 7px;
+}
+
+.course[active=true] {
+    background: #0aff00 !important;
+}
+
+.scheduleyear .course, .selectedcourses .course {
+    background: #535353 !important;
+    color: black !important;
+}
+
+    .selectedcourses .course:nth-child(odd), .scheduleyear .course:nth-child(odd) {
+        background: #868686 !important;
+    }
+
+    .selectedcourses .course[active=true] {
+        background: #0aff00 !important;
+    }
+
+
+.description {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    text-indent: 30px;
+}
+
+.courselabel {
+    font-weight: 700;
+    user-select: none;
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 90%;
+    height: stretch;
+}
+
+.courseheader {
+    cursor: pointer;
+    user-select: none;
+    color: black;
+    padding: 7px 10px 7px 10px;
+    width: stretch;
+}
+
+.creditlabel {
+    user-select: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 6px 4px 6px;
+    color: black;
+    margin-left: 5px;
+}
+
+.spacer {
+    height: 2px;
+    width: stretch;
+    background: black;
+}
+
+.course[active=true] {
+    background: #0aff00;
+}
+
+.verticalspacer {
+    width: 2px;
+    height: stretch;
+    background: black;
+    margin: 25px;
+    padding: 1px;
+}
+
+.prevcourses {
+    display: grid;
+}
+
+.prevcourse {
+    display: inline-flex;
+    margin-bottom: 10px;
+}
+
+    .prevcourse .removeprev {
+        text-align: center;
+        font-weight: 800;
+        border: unset;
+        width: 30px;
+        height: stretch;
+        background: red;
+        margin-left: 20px;
+        border-start-start-radius: 8px;
+        border-end-start-radius: 8px;
+    }
+
+    .prevcourse .addnext {
+        text-align: center;
+        font-weight: 800;
+        border: unset;
+        width: 30px;
+        height: stretch;
+        background: green;
+        border-end-end-radius: 8px;
+        border-start-end-radius: 8px;
+    }
+
+    .prevcourse .removeprev:disabled {
+        background: #ff1c1c;
+    }
+
+    .prevcourse input {
+        margin: unset;
+    }
+
+.download {
+    border: none;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    border-radius: 6px;
+    font-size: 20px;
+    background: #46ff31;
+    margin-top: 14px;
+    font-weight: 600;
+    width: max-content;
+}
+
+    .download:hover {
+        background: #17db00;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+    }
+
+.addyear {
+    border: none;
+    border-top: 2px solid black;
+    background: #6cff5b;
+    font-weight: 700;
+    border-end-end-radius: 4px;
+    border-end-start-radius: 4px;
+}
+
+    .addyear:hover {
+        background: #2bff12;
+    }
+
+.removeyear {
+    border: none;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    background: #f32b2b;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+    .removeyear:hover {
+        background: #ff0000;
+    }
+
+.selectedcourses {
+    width: 86%;
+    margin-left: 7%;
+    display: inline-flex;
+    margin-top: 20px;
+}
+
+.year {
+    background: #d8d8d8;
+    width: 50vw;
+    display: grid;
+    height: stretch;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+.semestercourses {
+    border: 1px solid black;
+    height: stretch;
+    min-height: 25vh;
+    margin-right: 5px;
+    width: calc(45vw);
+    border-start-end-radius: 8px;
+    border-end-end-radius: 8px;
+}
+
+.yearlabel {
+    border-start-end-radius: 4px;
+    border-start-start-radius: 4px;
+    user-select: none;
+    padding: 0px 10px 0px 10px;
+    border-bottom: 2px solid black;
+    background: #b02b3c;
+    font-size: 26px;
+    font-weight: 600;
+    color: black;
+    width: stretch;
+    text-align: center;
+    cursor: pointer;
+}
+
+    .yearlabel:hover {
+        background: #8f1c2b;
+    }
+
+.semester {
+    display: inline-flex;
+    width: calc(50vw - 10px);
+}
+
+.semesterdiv {
+    margin: 5px 5px 5px 5px;
+    min-height: min-content;
+    height: stretch;
+    width: 45vw;
+    display: grid;
+}
+
+.selectedlabel, .prevlabel {
+    user-select: none;
+    height: min-content;
+    padding: 6px 10px 6px 10px;
+    background: #b02b3c;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    width: max-content;
+    margin: 1vw 0vh 1vw 0vh;
+    border-radius: 7px;
+}
+
+.scheduleview {
+    display: grid;
+    height: max-content;
+}
+
+.semesteradd {
+    margin-left: 15px;
+    transform: rotate(180deg);
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
+    color: black;
+    width: 35px;
+    min-height: max-content;
+    height: stretch;
+    cursor: pointer;
+    background: #6cff5b;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    border-end-end-radius: 20px;
+    border-end-start-radius: 20px;
+    border-left: none;
+    user-select: none;
+    padding: 10px 0px;
+}
+
+    .semesteradd:hover {
+        background: #1bff00;
+    }
+
+.semesterlabel {
+    user-select: none;
+    background: #b02b3c;
+    width: max-content;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    padding: 6px 10px;
+    margin: 0px 4px 4px 4px;
+    border-radius: 7px;
+}
+
+.electives {
+    width: 100%;
+    display: inline-flex;
+}
+
+    .electives .courses {
+        height: 400px;
+        overflow-y: scroll;
+        margin-top: 8px;
+        border: 1px solid black;
+    }
+
+    .electives .relatedelectives, .electives .freeelectives, .electives .approvedelectives, .electives .focuselectives {
+        height: 500px;
+        overflow-y: scroll;
+        border: 2px solid black;
+        padding: 6px;
+        width: 49.5%;
+    }
+
+    .electives .arealabel {
+        border: 2px solid black;
+        border-radius: 12px;
+        background: #a42536;
+        padding: 8px 12px;
+        font-size: 18px;
+        font-weight: 600;
+        color: black;
+    }
+
+.focuselectives {
+    display: grid;
+    width: max-content;
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.focussubdiv .courses {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.focussubdiv .minimize {
+    font-family: monospace,monospace;
+    font-weight: 800;
+    transform: scale(1.5);
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 10px;
+    margin-right: 25px;
+}
+
+    .focussubdiv .minimize:hover {
+        background: #89202f;
+        cursor: pointer;
+    }
+
+.spacer3 {
+    height: 2px;
+    width: stretch;
+    background: black;
+    margin: 12px 0px;
+}
+
+.depthoption {
+    border: 2px solid black;
+    width: 90%;
+    margin-left: 5%;
+    padding: 20px 33px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+    .depthoption .spacer, .specialty .spacer {
+        margin: 9px 13px;
+    }
+
+    .depthoption .depthlabel, .specialtylabel {
+        border: 2px solid black;
+        border-radius: 12px;
+        background: #a42536;
+        padding: 8px 12px;
+        font-size: 18px;
+        font-weight: 700;
+        color: black;
+        user-select: none;
+        margin-bottom: 15px;
+    }
+
+.depthlabel input {
+    margin-right: 20px;
+}
+
+.specialty {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.specialtyoption {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 12px 17px;
+    margin-bottom: 20px;
+}
+
+.invisspacer {
+    height: 20px;
+    width: 200px;
+}
+
+.nofinal {
+    margin-left: -40px;
+    margin-top: 75px;
+    text-align: center;
+    font-size: 25px;
+    background: #b02b3c;
+    padding: 9px 13px;
+    border-radius: 7px;
+    font-weight: 600
+}
+
+.finalproject {
+    display: inline-flex;
+    width: max-content;
+    justify-content: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2vw;
+}
+
+.finaloption {
+    text-align: center;
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 7px;
+    margin: 12px 17px;
+    margin-bottom: 2vw;
+}
+
+    .finaloption:has(:checked) {
+        background-color: #71ff66;
+    }
+
+    .finaloption .finalsection {
+        text-align: center;
+        border: 1px solid black;
+        padding: 4px;
+        width: stretch;
+        border-radius: 7px;
+        margin: 12px 17px;
+    }
+
+        .finaloption .finalsection .finalcoursegroup {
+            text-align: center;
+            padding: 4px;
+            width: stretch;
+            border-radius: 7px;
+            margin: 12px 17px;
+        }
+
+            .finaloption .finalsection .finalcoursegroup .finalcourse {
+                text-align: center;
+                border: 1px solid black;
+                padding: 4px;
+                width: stretch;
+                border-radius: 7px;
+                margin: 12px 17px;
+                background: lightgray;
+            }
+
+    .finaloption .finaloptionlabel {
+        background: #b02b3c;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 8px 13px;
+        border-radius: 8px;
+    }
+
+    .finaloption .finalgroup {
+        border: 1px solid black;
+        padding: 4px;
+        width: max-content;
+        border-radius: 7px;
+    }
+
+        .finaloption .finalgroup .finalcredits {
+            margin: 12px 20px;
+        }
+
+        .finaloption .finalgroup .finallabel {
+            padding: 6px 10px;
+            background: #b02b3c;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 7px;
+        }
+
+.selectedcourses .finaloption {
+    text-align: center;
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 7px;
+    margin: 12px 17px;
+    margin-bottom: 2vw;
+}
+
+    .selectedcourses .finaloption .finalsection {
+        text-align: center;
+        border: 1px solid black;
+        padding: 4px;
+        width: stretch;
+        border-radius: 7px;
+        margin: 12px 17px;
+    }
+
+        .selectedcourses .finaloption .finalsection .finalcoursegroup {
+            text-align: center;
+            padding: 4px;
+            width: stretch;
+            border-radius: 7px;
+            margin: 12px 17px;
+        }
+
+            .selectedcourses .finaloption .finalsection .finalcoursegroup .finalcourse {
+                text-align: center;
+                border: 1px solid black;
+                padding: 4px;
+                width: stretch;
+                border-radius: 7px;
+                margin: 12px 17px;
+                background: lightgray;
+            }
+
+                .selectedcourses .finaloption .finalsection .finalcoursegroup .finalcourse:has(input:disabled:checked) {
+                    background: lightgreen;
+                }
+
+    .selectedcourses .finaloption .finaloptionlabel {
+        background: #b02b3c;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 8px 13px;
+        border-radius: 8px;
+    }
+
+    .selectedcourses .finaloption .finalgroup {
+        border: 1px solid black;
+        padding: 4px;
+        width: max-content;
+        border-radius: 7px;
+    }
+
+        .selectedcourses .finaloption .finalgroup .finalcredits {
+            margin: 12px 20px;
+        }
+
+        .selectedcourses .finaloption .finalgroup .finallabel {
+            padding: 6px 10px;
+            background: #b02b3c;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 7px;
+        }
+
+.creditcounter {
+    font-weight: 600;
+    min-width: 160px;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+.notes {
+    margin: 40px 15%;
+    width: 70%;
+    text-indent: -15px;
+    font-size: 20px;
+}
+
+.course {
+    padding: 12px 17px;
+    margin: 7px;
+}
+
+.pblcourses {
+    width: 80%;
+    margin: 30px 10%
+}
+
+    .pblcourses .pblsection {
+        border: 2px solid black;
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+.pbllabel {
+    border: 2px solid black;
+    border-radius: 12px;
+    background: #a42536;
+    padding: 8px 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+    user-select: none;
+    margin-bottom: 15px;
+}
+
+.courses {
+    max-height: 40vh;
+    overflow-y: scroll;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.otherselections {
+    display: inline-flex;
+    width: max-content;
+    justify-content: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2vw;
+}
+
+    .otherselections .finaloption {
+        text-align: center;
+        border: 1px solid black;
+        padding: 20px 37px;
+        margin: 12px 17px;
+        margin-bottom: 2vw;
+    }
+
+        .otherselections .finaloption:has(:checked) {
+            background-color: #71ff66;
+        }
+
+        .otherselections .finaloption .finalsection {
+            text-align: center;
+            border: 1px solid black;
+            padding: 4px;
+            width: stretch;
+            margin: 12px 17px;
+        }
+
+            .otherselections .finaloption .finalsection .finalcoursegroup {
+                text-align: center;
+                width: stretch;
+                border-radius: 7px;
+                margin: 12px 17px;
+            }
+
+                .otherselections .finaloption .finalsection .finalcoursegroup .finalcourse {
+                    text-align: center;
+                    padding: 20px 27px;
+                    width: stretch;
+                    margin: 12px 17px;
+                    background: darkgray;
+                }
+
+        .otherselections .finaloption .finaloptionlabel {
+            background: #b02b3c;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 8px 13px;
+            border-radius: 8px;
+        }
+
+        .otherselections .finaloption .finalgroup {
+            border: 1px solid black;
+            padding: 4px;
+            width: max-content;
+            border-radius: 7px;
+        }
+
+            .otherselections .finaloption .finalgroup .finalcredits {
+                margin: 12px 20px;
+            }
+
+            .otherselections .finaloption .finalgroup .finallabel {
+                padding: 6px 10px;
+                background: #b02b3c;
+                font-size: 20px;
+                font-weight: 600;
+                border-radius: 7px;
+            }

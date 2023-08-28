@@ -1,0 +1,41 @@
+body {
+    overflow: clip;
+    width: 100vw;
+}
+
+:root {
+    --menu-bg: gray;
+    --menu-font-color: #FFFFFF;
+    --menu-border: black;
+    --menu-bg-selected: #333333;
+    --menu-bg-hover: #52dcff;
+    --menu-bg-selected-chevron: #3cac1a;
+}
+
+label {
+    font-size: 25px;
+}
+
+.scheduling {
+    height: stretch;
+    border: groove;
+    margin-top: 50px;
+    padding: 16px 21px;
+}
+
+select {
+    width: max-content;
+    text-align: center;
+}
+
+form {
+    text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: min-content;
+}
+
+    form select {
+        margin: 12px 7px;
+        font-size: 18px;
+    }

@@ -1,0 +1,99 @@
+﻿@model Course
+
+<head>
+    <link rel="stylesheet" href="~/css/addcourse.css" asp-append-version="true" />
+    <script src="~/js/gradcourse.js"></script>
+    <link rel="icon" href="./favicon.ico" />
+    <title>New Graduate Course</title>
+</head>
+<body>
+    <label class="mainlabel">Enter Course Information</label>
+    <div class="coursesubmit">
+        <form asp-action="AddCourseRedirect" class="form" onchange="updateWaive()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="info">
+                <div class="area">
+                    <label class="sect">Course Area</label>
+                    <input asp-for="AREA" required />
+                    <span asp-validation-for="AREA" class="text-danger"></span>
+                </div>
+                <div class="id">
+                    <label class="sect">Course ID</label>
+                    <input asp-for="ID" required />
+                    <span asp-validation-for="ID" class="text-danger"></span>
+                </div>
+                <div class="name">
+                    <label class="sect">Course Name</label>
+                    <input asp-for="NAME" required />
+                    <span asp-validation-for="NAME" class="text-danger"></span>
+                </div>
+                <div class="description">
+                    <label class="sect">Description</label>
+                    <input asp-for="DESCRIPTION" required />
+                    <span asp-validation-for="DESCRIPTION" class="text-danger"></span>
+                </div>
+                <div class="credits">
+                    <label class="sect">Credits</label>
+                    <input asp-for="CREDITS" required />
+                    <span asp-validation-for="CREDITS" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <div>
+                <div class="prereqrec">
+                    <div class="prereq">
+                        <label class="sect">Prerequisite Courses</label>
+                        <div class="buttons">
+                            <button type="button" onclick="addPrereqGroup(this)">Add Grouping</button>
+                            <button type="button" onclick="removePrereqGroup(this)">Remove Grouping</button>
+                        </div>
+                        <input class="prereqinput" asp-for="PREREQ" hidden />
+                        <span asp-validation-for="PREREQ" class="text-danger"></span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="rec">
+                        <label class="sect">Recommended Courses</label>
+                        <div class="buttons">
+                            <button type="button" onclick="addRecGroup(this)">Add Grouping</button>
+                            <button type="button" onclick="removeRecGroup(this)">Remove Grouping</button>
+                        </div>
+                        <input class="recinput" asp-for="REC" hidden />
+                        <span asp-validation-for="REC" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="hspacer">
+                </div>
+                <div class="subsect2">
+                    <div class="waive">
+                        <label class="sect">Waive Course Form URL</label>
+                        <input type="checkbox" class="waivecheck" oninput="toggleHref()" />
+                        <input type="text" class="waivehref" asp-for="WAIVELINK" disabled />
+                        <span asp-validation-for="WAIVELINK" class="text-danger"></span>
+                    </div>
+                    <div class="spacer"></div>
+                    <div class="crange">
+                        <label class="sect">Credit Range</label>
+                        <div class="inputs">
+                            <input type="checkbox" oninput="toggleCrange(this.checked)" />
+                            <input id="minval" type="number" min="0" onchange="updateCrange(); document.querySelector('#maxval').min = (Number(this.value) + 1);" placeholder="Minimum value" disabled />
+                            <input id="maxval" type="number" onchange="updateCrange(); document.querySelector('#minval').max = (Number(this.value) - 1);" placeholder="Maximum value" disabled />
+                        </div>
+                        <input type="text" class="crangeinput" asp-for="CRANGE" hidden />
+                        <span asp-validation-for="WAIVE" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="waiveoptions">
+                    <label class="sect">Waive Options</label>
+                    <div class="buttons">
+                        <button type="button" onclick="addWaiveOption()">Add Waive Option</button>
+                        <button type="button" onclick="removeWaiveOption()">Remove Waive Option</button>
+                        <input type="text" class="waiveinput" asp-for="WAIVE" hidden />
+                        <span asp-validation-for="WAIVE" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" hidden class="hiddenbutton"></button>
+        </form>
+        <button type="button" class="button" onclick="clickHidden()">Submit</button>
+    </div>
+</body>

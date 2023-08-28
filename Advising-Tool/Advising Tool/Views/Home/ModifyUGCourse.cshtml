@@ -1,0 +1,132 @@
+﻿@model Course
+
+<head>
+    <link rel="stylesheet" href="~/css/addcourse.css" asp-append-version="true" />
+    <link rel="icon" href="./favicon.ico" />
+    <title>New Graduate Course</title>
+</head>
+<body>
+    <label class="mainlabel">Enter Course Information</label>
+    <div class="coursesubmit">
+        <form asp-action="UpdateUGCourse" class="form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="info">
+                <div class="area">
+                    <label class="sect">Course Area</label>
+                    <input asp-for="AREA" required />
+                    <span asp-validation-for="AREA" class="text-danger"></span>
+                </div>
+                <div class="id">
+                    <label class="sect">Course ID</label>
+                    <input asp-for="ID" required />
+                    <span asp-validation-for="ID" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="prereqrec">
+                <div class="rec">
+                    <label class="sect">Recommended Courses</label>
+                    <div class="buttons">
+                        <button type="button" onclick="addRecGroup(this)">Add Grouping</button>
+                        <button type="button" onclick="removeRecGroup(this)">Remove Grouping</button>
+                    </div>
+                    <input class="recinput" asp-for="REC" hidden />
+                    <span asp-validation-for="REC" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" hidden class="hiddenbutton"></button>
+        </form>
+        <button type="button" class="button" onclick="clickHidden()">Submit</button>
+    </div>
+</body>
+<script>
+    function removeRecGroup(element) {
+        var elmt = element.parentElement.parentElement.lastChild;
+        try {
+            if (elmt.classList.contains("recgroup")) {
+                elmt.remove();
+            }
+        } catch (err) {
+            //ignoring undefined value error
+        }
+    }
+
+    function addRecGroup(element) {
+        var newgroup = document.createElement("div");
+        newgroup.classList.add("recgroup");
+        var buttons = document.createElement("div");
+        buttons.classList.add("buttons");
+        var removecourse = document.createElement("button");
+        removecourse.type = "button";
+        removecourse.setAttribute("onclick", "removeCourse(this)");
+        removecourse.innerHTML = "Remove";
+        var addcourse = document.createElement("button");
+        addcourse.type = "button";
+        addcourse.setAttribute("onclick", "addCourse(this)");
+        addcourse.innerHTML = "Add";
+        buttons.appendChild(addcourse);
+        buttons.appendChild(removecourse);
+        newgroup.appendChild(buttons);
+
+        element.parentElement.parentElement.appendChild(newgroup);
+    }
+
+    function addCourse(element) {
+        var course = document.createElement("input");
+        course.type = "text";
+        course.classList.add("course");
+        element.parentElement.parentElement.appendChild(course);
+    }
+
+    function removeCourse(element) {
+        var elmt = element.parentElement.parentElement.lastChild;
+        if (elmt.classList.contains("course")) {
+            elmt.remove();
+        }
+    }
+
+    function removeParent(element) {
+        element.parentElement.remove();
+    }
+
+    function clickHidden() {
+        function generateJsonRec() {
+            var arr = "[";
+            var groups = document.querySelectorAll(".recgroup");
+            for (let i = 0; i < groups.length; i++) {
+                var group = groups[i].querySelectorAll(".course");
+                if (group.length === 0) {
+                    continue;
+                } else {
+                    arr += "[";
+                    for (let j = 0; j < group.length; j++) {
+                        var course = group[j];
+                        if (course.value.includes("-")) {
+                            var split = course.value.split("-");
+                            console.log(split)
+                            if (j === group.length - 1) {
+                                arr += '{"AREA" : "' + split[0] + '", "ID" : "' + split[1] + '"}';
+                                break;
+                            } else {
+                                arr += '{"AREA" : "' + split[0] + '", "ID" : "' + split[1] + '"},';
+                            }
+                        }
+                    }
+                    if (i === groups.length - 1) {
+                        arr += "]";
+                    } else {
+                        arr += "],";
+                    }
+                }
+            }
+            arr += "]";
+            if (arr === "[]") {
+                return "";
+            }
+            return arr;
+        }
+
+        document.querySelector(".recinput").value = generateJsonRec();
+        document.querySelector(".hiddenbutton").click();
+    }
+</script>

@@ -1,0 +1,14 @@
+﻿//- Make it so the course check happens when you try going to Advisor Approval page
+//	- Add advisor approval page
+
+//Non-core electives not working properly. (tracked credits turning into NaN)
+//Make final get added to course scheduling
+//Available after 10
+//https://www.wpi.edu/sites/default/files/docs/Departments-Programs/Robotics-Engineering/RBE-MS-MS.PlanOfStudy.pdf
+//Collapsible subsection for each course section (collapsed at the start)
+
+/*
+Potentially fixed:
+	- Filtering for degree selection
+
+*/

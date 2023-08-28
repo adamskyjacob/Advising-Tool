@@ -1,0 +1,150 @@
+body {
+    width: 100%;
+    text-align: center;
+}
+
+.area, .id, .name, .description, .credits, .prereq, .rec {
+    width: 100%;
+}
+
+.sect {
+    display: grid;
+}
+
+input {
+    margin-left: 0%;
+}
+
+.crange {
+    display: grid;
+}
+
+    .crange input {
+        width: 20%;
+    }
+
+.waiveoptions {
+    width: min-content;
+    display: grid;
+}
+
+    .waiveoptions button {
+        width: max-content;
+    }
+
+    .waiveoptions .waiveoption {
+        border: 1px solid black;
+        padding: 6px;
+        margin: 5px;
+    }
+
+.subsect2 {
+    display: inline-flex;
+}
+
+.inputs {
+    display: inline-flex;
+    width: max-content;
+}
+
+    .inputs input[type=checkbox] {
+        width: 20px;
+        height: 20px;
+    }
+
+    .inputs input[type=number] {
+        width: 200px;
+    }
+
+    .inputs input{
+        margin-right:10px;
+    }
+
+.waive {
+    display: table;
+}
+
+    .waive input[type=checkbox] {
+        margin-right: 20px;
+    }
+
+.mainlabel {
+    padding: 12px 19px;
+    background: rgb(176, 43, 60);
+    width: max-content;
+    margin: 20px;
+    font-weight: 600;
+    font-size: 24px;
+    border-radius: 20px;
+    color: white;
+}
+
+label {
+    padding: 7px 12px;
+    background: rgb(176, 43, 60);
+    width: max-content;
+    margin: 20px;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 20px;
+    color: white;
+}
+
+.form {
+    display: inline-flex;
+}
+
+.coursesubmit {
+    justify-content: center;
+    display: grid;
+}
+
+.spacer {
+    width: 15vw;
+}
+
+.button {
+    height: min-content;
+    border: 2px outset black;
+    width: min-content;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+    .button:hover {
+        border: 2px inset black;
+    }
+
+.prereqrec {
+    display: flex;
+}
+
+.prereqgroup, .recgroup {
+    display: grid;
+    width: stretch;
+    height: max-content;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.course {
+    margin-bottom: 10px;
+}
+
+.prereqgroup button, .recgroup button {
+    height: min-content;
+    width: min-content;
+    padding: 2px 5px;
+}
+
+.buttons {
+    height: min-content;
+    display: inline-flex;
+    width: max-content;
+    margin-bottom: 10px;
+}
+
+    .buttons button {
+        margin-right: 15px;
+    }

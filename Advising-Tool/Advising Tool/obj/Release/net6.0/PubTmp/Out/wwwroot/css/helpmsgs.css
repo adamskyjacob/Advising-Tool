@@ -1,0 +1,34 @@
+﻿body {
+    display: grid;
+    width: 100%;
+}
+
+    body .search {
+        width: 100%;
+        text-align: left;
+    }
+
+        body .search .searchlabel {
+            background: #b01c2f;
+            padding: 12px 17px;
+            color: white;
+        }
+
+        body .search .searchoptions {
+            display: grid;
+        }
+
+        body .search .searchoptions .option {
+            width:max-content;
+        }
+
+    body .messages {
+        width: 100%;
+        display: grid;
+    }
+
+        body .messages .msg {
+            padding: 12px 17px;
+            color: black;
+            border: 1px solid black;
+        }

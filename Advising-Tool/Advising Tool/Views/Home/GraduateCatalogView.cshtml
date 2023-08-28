@@ -1,0 +1,202 @@
+﻿@using static Advising_Tool.Views.Home.Functions
+@using System.Text.Json
+
+@model Course
+
+<head>
+    <link rel="stylesheet" href="~/css/catalog.css" asp-append-version="true" />
+    <link rel="icon" href="./favicon.ico" />
+    <title>Graduate Catalog</title>
+</head>
+<body>
+    <div class="subbody">
+        @{
+            <div class="filteroptions">
+                <div class="areafilter">
+                    <label>Filter By Area</label>
+                    <select onchange="filterCourse()">
+                        <option value="" style="background:#b4b4b4b4;">Select study area</option>
+                        @foreach (KeyValuePair<string, string> kvp in GetStudyAreas())
+                        {
+                            <option value="@kvp.Key">@kvp.Key - @kvp.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="searchfilter">
+                    <label>Search Course Content</label>
+                    <input type="text" placeholder="Enter search query" oninput="filterCourse()" />
+                </div>
+                <div class="searchtype">
+                    <label>Search Options</label>
+                    <div class="checkboxdiv">
+                        <input class="titlebool" type="checkbox" onclick="filterCourse()" />
+                        <text>Search by title</text>
+                    </div>
+                    <div class="checkboxdiv">
+                        <input class="descbool" type="checkbox" onclick="filterCourse()" />
+                        <text>Search by description</text>
+                    </div>
+                </div>
+            </div>
+            <div class="catalog">
+                @foreach (Course course in GetCatalog())
+                {
+                    <div class="course" id="@course.AREA@course.ID">
+                        <div class="courseheader" onclick="showCourseInfo(this.parentElement)">
+                            <label class="courselabel">@course.AREA @course.ID - @course.NAME</label>
+                        </div>
+                        <div class="courseinfo" hidden>
+                            @if (course.CREDITS! == "1")
+                            {
+                            <div class="creditlabel">
+                                (@course.CREDITS credit)
+                            </div>
+                            }
+                            else
+                            {
+                            <div class="creditlabel">
+                                (@course.CREDITS credits)
+                            </div>
+                            }
+                            <label class="descriptionlabel">Description</label>
+                            <p class="description">@course.DESCRIPTION</p>
+                            <div class="prerequisites">
+                                @if (course.PREREQ != "")
+                                {
+                                    <label class="prereqlabel">Prerequisites</label>
+                                    <br />
+                                    <div class="prereqdiv">
+                                        @foreach (JsonElement prereq in ParseJson<JsonElement>(course.PREREQ!).EnumerateArray())
+                                        {
+                                            if (prereq.GetArrayLength() > 1)
+                                            {
+                                                foreach (JsonElement prereqCourse in prereq.EnumerateArray())
+                                                {
+                                                    if (prereqCourse.ToString() == prereq.EnumerateArray().Last().ToString())
+                                                    {
+                                                        <text> or @prereqCourse.GetProperty("AREA") @prereqCourse.GetProperty("ID")</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (prereq.EnumerateArray().Count() == 2)
+                                                        {
+                                                            <text>@prereqCourse.GetProperty("AREA") @prereqCourse.GetProperty("ID")</text>
+                                                        }
+                                                        else
+                                                        {
+                                                            <text>@prereqCourse.GetProperty("AREA") @prereqCourse.GetProperty("ID"), </text>
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <text>@prereq[0].GetProperty("AREA") @prereq[0].GetProperty("ID")</text>
+                                                <br />
+                                            }
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <label class="prereqlabel">No Prerequisites</label>
+                                }
+                                <div class="spacer"></div>
+                                <div class="recommended">
+                                    @if (course.REC!.Length > 0)
+                                    {
+                                        <label class="reclabel">Recommended Background</label>
+                                        <br />
+                                        <div class="recdiv">
+                                            @foreach (JsonElement rec in ParseJson<JsonElement>(course.REC).EnumerateArray())
+                                            {
+                                                if (rec.GetArrayLength() > 1)
+                                                {
+                                                    foreach (JsonElement recCourse in rec.EnumerateArray())
+                                                    {
+                                                        if (recCourse.ToString() == rec.EnumerateArray().Last().ToString())
+                                                        {
+                                                            <text> or @recCourse.GetProperty("AREA") @recCourse.GetProperty("ID")</text>
+                                                        }
+                                                        else
+                                                        {
+                                                            if (rec.EnumerateArray().Count() == 2)
+                                                            {
+                                                                <text>@recCourse.GetProperty("AREA") @recCourse.GetProperty("ID")</text>
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>@recCourse.GetProperty("AREA") @recCourse.GetProperty("ID"), </text>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <text>@rec[0].GetProperty("AREA") @rec[0].GetProperty("ID")</text>
+                                                }
+                                                <br />
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <label class="reclabel">No Recommended Background</label>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</body>
+<script>
+    window.addEventListener('load', function (e) {
+        var query = window.localStorage.getItem("query");
+        if (query != null) {
+            var split = query.split('-');
+            document.querySelector(".areafilter").querySelector("select").value = split[0];
+            document.querySelector(".searchfilter").querySelector("input").value = split[1];
+            document.querySelector(".titlebool").checked = true;
+            filterCourse();
+        }
+    });
+    function showCourseInfo(course) {
+        course.querySelector(".courseinfo").hidden ^= true;
+    }
+
+    function filterCourse() {
+        var query = document.querySelector(".searchfilter").querySelector("input").value;
+        var area = document.querySelector(".areafilter").querySelector("select").value
+        var DESCRIPTION = document.querySelector(".descbool").checked, title = document.querySelector(".titlebool").checked;
+        document.querySelectorAll(".course").forEach(course => {
+            if (DESCRIPTION && !title) {
+                if (course.querySelector(".description").innerHTML.includes(query) && course.id.includes(area)) {
+                    course.hidden = false;
+                } else {
+                    course.hidden = true;
+                }
+            } else if (!DESCRIPTION && title) {
+                if (course.querySelector(".courselabel").innerHTML.includes(query) && course.id.includes(area)) {
+                    course.hidden = false;
+                } else {
+                    course.hidden = true;
+                }
+            } else if (DESCRIPTION && title) {
+                if (course.querySelector(".description").innerHTML.includes(query) && (course.querySelector(".courselabel").innerHTML.includes(query)) && course.id.includes(area)) {
+                    course.hidden = false;
+                } else {
+                    course.hidden = true;
+                }
+            } else if (!DESCRIPTION && !title) {
+                if (course.id.includes(area)) {
+                    course.hidden = false;
+                } else {
+                    course.hidden = true;
+                }
+            }
+        });
+    }
+</script>

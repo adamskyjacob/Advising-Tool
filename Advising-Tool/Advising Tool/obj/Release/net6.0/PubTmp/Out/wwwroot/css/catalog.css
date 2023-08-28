@@ -1,0 +1,126 @@
+body {
+    overflow-y: hidden;
+}
+
+body {
+    overflow: hidden;
+}
+
+.subbody {
+    display: inline-flex;
+    overflow: hidden;
+}
+
+.course {
+    margin: 5px;
+    padding: 5px 5px 5px 5px;
+    width: stretch;
+    background: #989898;
+}
+
+    .course:nth-child(odd) {
+        background: #cecece;
+    }
+
+.description {
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    text-indent: 30px;
+}
+
+.courselabel {
+    font-weight: 700;
+    user-select: none;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.courseheader {
+    cursor: pointer;
+    user-select: none;
+    color: black;
+    padding: 7px 10px 7px 10px;
+    width: stretch;
+}
+
+.creditslabel {
+    user-select: none;
+    font-size: 18px;
+    background: #b02b3c;
+    font-weight: 600;
+    padding: 4px 6px 4px 6px;
+    color: black;
+    margin-left: 5px;
+}
+
+.filteroptions {
+    margin: 5px;
+    border: 2px solid black;
+    border-top: none;
+    display: grid;
+    height: max-content;
+}
+
+    .filteroptions label {
+        border-top: 2px solid black;
+        width: stretch;
+        text-align: center;
+        background-color: #c73144;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 4px;
+    }
+
+    .filteroptions * {
+        display: grid;
+    }
+
+    .filteroptions input {
+        margin: 5px;
+    }
+
+.catalog {
+    margin: 5px;
+    border: 2px solid black;
+    height: 90vh;
+    width: 60vw;
+    overflow-y: scroll;
+}
+
+.prereqlabel, .descriptionlabel, .reclabel {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 10px;
+    margin-bottom: 10px
+}
+
+.prereqdiv, .recdiv {
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.checkboxdiv {
+    display: inline-flex;
+    margin: 5px 0px 0px 20px;
+    padding-bottom: 10px;
+}
+
+    .checkboxdiv input {
+        display: block;
+        padding: unset;
+        margin: 0px 20px 0px 0px;
+    }
+
+
+.spacer {
+    background: #2c2c2c;
+    height: 3px;
+    margin: 10px 35px 20px 35px;
+}
+
+.creditlabel {
+    margin-left: 40px;
+    font-weight: 700;
+}

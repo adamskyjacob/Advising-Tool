@@ -1,0 +1,131 @@
+﻿@model GraduateSchedule
+
+<head>
+    <link rel="stylesheet" href="~/css/addsheet.css" asp-append-version="true" />
+    <link rel="icon" href="./favicon.ico" />
+    <script src="~/js/gradsheet.js"></script>
+    <title>New Graduate Tracking Sheet</title>
+</head>
+<body>
+    <label class="mainlabel">Enter Tracking Sheet Information</label>
+    <div class="sheetsubmit">
+        <form asp-action="AddGraduateSheetRedirect" class="form" onchange="updateCourses(); updateFinal(); setElective(); updateFocusInput(); updateDepth(); updateSpecial();">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="top">
+                <div class="info">
+                    <div class="area">
+                        <label class="sect">Degree Area</label>
+                        <input asp-for="AREA" required />
+                        <span asp-validation-for="AREA" class="text-danger"></span>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="longname">
+                        <label class="sect">Full Name</label>
+                        <input asp-for="LONGNAME" autocapitalize required />
+                        <span asp-validation-for="LONGNAME" class="text-danger"></span>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="degree">
+                        <label class="sect">Degree ID</label>
+                        <input asp-for="DEGREE" required />
+                        <span asp-validation-for="DEGREE" class="text-danger"></span>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="electives">
+                        <label class="sect">Electives</label>
+                        <div class="electivesubsect">
+                            <div class="electivesect">
+                                <label class="sect">Free</label>
+                                <input class="FREE" type="number" oninput="setElective()" />
+                            </div>
+                            <div class="electivesect">
+                                <label class="sect">Degree-Related</label>
+                                <input class="RELATED" type="number" oninput="setElective()" />
+                            </div>
+                            <div class="electivesect">
+                                <label class="sect">Committee-Approved</label>
+                                <input class="APPROVED" type="number" oninput="setElective()" />
+                            </div>
+                        </div>
+                        <input asp-for="ELECTIVE" class="ELECTIVE" hidden />
+                        <span asp-validation-for="ELECTIVE" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="spacer2"></div>
+                <div class="coursereq">
+                    <div class="subsection">
+                        <div class="coursessect">
+                            <label class="sect">Course Sections</label>
+                            <div class="buttons">
+                                <button type="button" onclick="addCoursesSection()">Add Section</button>
+                                <button type="button" onclick="removeCoursesSection()">Remove Section</button>
+                            </div>
+                            <div class="coursesections">
+                            </div>
+                            <input class="coursesinput" asp-for="COURSES" hidden />
+                            <span asp-validation-for="COURSES" class="text-danger"></span>
+                        </div>
+                        <div class="finalsection">
+                            <label class="sect">Final</label>
+                            <div class="buttons">
+                                <button type="button" onclick="addFinalOption()">Add Option</button>
+                                <button type="button" onclick="removeFinalOption()">Remove Option</button>
+                            </div>
+                            <div class="finalsects">
+                            </div>
+                            <input class="finalinput" asp-for="FINAL" hidden />
+                            <span asp-validation-for="FINAL" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="subsection">
+                        <div class="focussection">
+                            <label class="sect">Focused Electives</label>
+                            <div class="buttons">
+                                <button type="button" onclick="addFocusArea()">Add Focus Area</button>
+                                <button type="button" onclick="removeFocusArea()">Remove Focus Area</button>
+                            </div>
+                            <div class="focussects">
+                            </div>
+                            <input class="focusinput" asp-for="FOCUS" hidden />
+                            <span asp-validation-for="FOCUS" class="text-danger"></span>
+                        </div>
+                        <div class="depth">
+                            <label class="sect">Depth Selection</label>
+                            <div class="buttons">
+                                <button type="button" onclick="addDepthOption()">Add Depth Option</button>
+                                <button type="button" onclick="removeDepthOption()">Remove Depth Option</button>
+                            </div>
+                            <div class="depthsects">
+                            </div>
+                            <input class="depthinput" asp-for="DEPTH" hidden />
+                            <span asp-validation-for="DEPTH" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="subsection">
+                        <div class="specialsection">
+                            <label class="sect">Specialty Selection</label>
+                            <div class="numselect">
+                                <label><b># of Sections: </b></label>
+                                <input type="number" />
+                            </div>
+                            <div class="buttons">
+                                <button type="button" onclick="addSpecialArea()">Add Specialty Area</button>
+                                <button type="button" onclick="removeSpecialArea()">Remove Specialty Area</button>
+                            </div>
+                            <div class="specialtysects">
+                            </div>
+                            <input class="specialinput" asp-for="SPECIALTY" hidden />
+                            <span asp-validation-for="SPECIALTY" class="text-danger"></span>
+                        </div>
+                        <div class="notessection">
+                            <label class="sect">Notes</label>
+                            <textarea class="notesinput resize-ta" asp-for="NOTES" onkeydown="this.style.height = ((this.scrollHeight) + 'px')"></textarea>
+                            <span asp-validation-for="NOTES" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button type="submit" class="button" onclick="document.querySelector('.realsubmit').click()">Submit</button>
+    </div>
+</body>

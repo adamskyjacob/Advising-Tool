@@ -1,0 +1,66 @@
+﻿@using Advising_Tool.Views.Home;
+@using MySql.Data.MySqlClient
+@using System.Text.RegularExpressions
+@using static Advising_Tool.Views.Home.Functions
+
+@model GraduateRequest
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@functions {
+    public TripleEnumerable<string, string, string> gradOptions = GetGraduateOptions();
+    public Dictionary<string, string> DegreeOptions()
+    {
+        Dictionary<string, string> ret = new();
+        foreach (var obj in gradOptions)
+        {
+            if (!ret.Keys.Contains(obj.GetFirst()))
+            {
+                ret.Add(obj.GetFirst(), GetStudyAreaName(obj.GetFirst()));
+            }
+        }
+        return ret;
+    }
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/degreeselection.css" asp-append-version="true" />
+    <link rel="icon" href="./favicon.ico" />
+    <script src="~/js/degreeselect.js"></script>
+</head>
+<body>
+    <form asp-action="GraduateRequest" class="form-horizontal">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="scheduling">
+            <label><b>Area of Study</b></label>
+            <div>
+                <select asp-for="AREA" id="aos" onchange="switchDegree();">
+                    @foreach (KeyValuePair<string, string> pair in DegreeOptions())
+                    {
+                        <option value=@pair.Key>@pair.Value (@pair.Key)</option>
+                    }
+                </select>
+            </div>
+            <label><b>Degree Options</b></label>
+            <div>
+                <div id="typeselectholder">
+                    <select asp-for="TYPE" id="type">
+                        @foreach (Triple<string, string, string> triple in gradOptions.Where(triple => triple.GetFirst() == "AE"))
+                        {
+                            <option value=@triple.GetSecond() data-area=@triple.GetFirst()>@triple.GetThird() (@triple.GetSecond())</option>
+                        }
+                    </select>
+                </div>
+                <select id="tempselect" hidden>
+                    @foreach (Triple<string, string, string> triple in gradOptions)
+                    {
+                        <option value=@triple.GetSecond() data-area=@triple.GetFirst()>@triple.GetThird() (@triple.GetSecond())</option>
+                    }
+                </select>
+            </div>
+            <button id="submit" type="submit">SUBMIT</button>
+        </div>
+    </form>
+</body>

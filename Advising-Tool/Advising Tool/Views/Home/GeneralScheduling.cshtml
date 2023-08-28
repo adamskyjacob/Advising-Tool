@@ -1,0 +1,127 @@
+﻿@using MySql.Data.MySqlClient
+@using System.Text.Json
+@using static Advising_Tool.Views.Home.Functions
+
+<head>
+    <script src="~/js/gradscript.js"></script>
+    <link rel="stylesheet" href="~/css/gensched.css" asp-append-version="true" />
+    <link rel="icon" href="./favicon.ico" />
+    <title>General Scheduling</title>
+</head>
+<body>
+    <div class="creditcounter" data-credits="0">
+        0 credits
+    </div>
+    <div class="butselbar">
+        <div class="butsel active" active="true" onclick="switchVisibleSection('.courseselection',this); window.scrollTo(0, 0); window.document.title = 'General Scheduling - Course Selection';">
+            Course Selection
+        </div>
+        <div class="butsel" active="false" onclick="switchVisibleSection('.selectedcourses', this); window.scrollTo(0, 0); window.document.title = 'General Scheduling - Selected Courses';">
+            Selected Courses
+        </div>
+    </div>
+    <div class="selectedcourses subarea" hidden>
+        <div class="scheduleyear selectedsubdiv">
+            <div class="year" data-hidechildren="false">
+                <label class="yearlabel" onclick="this.parentElement.querySelectorAll('.semesterdiv').forEach(t => t.toggleAttribute('hidden'))">Year 1</label>
+                <div class="semesterdiv">
+                    <label class="semesterlabel">Fall Semester</label>
+                    <div class="semester">
+                        <div class="semesteradd" onclick="addSelectedCourse(this)">
+                            Add Selected Course
+                        </div>
+                        <div class="semestercourses"></div>
+                    </div>
+                </div>
+                <div class="semesterdiv">
+                    <label class="semesterlabel">Spring Semester</label>
+                    <div class="semester">
+                        <div class="semesteradd" onclick="addSelectedCourse(this)">
+                            Add Selected Course
+                        </div>
+                        <div class="semestercourses"></div>
+                    </div>
+                </div>
+                <button class="removeyear" onclick="removeYear(this)" hidden>Remove Year</button>
+                <button class="addyear" onclick="addYear(this)">Add Year</button>
+            </div>
+        </div>
+        <div class="verticalspacer"></div>
+        <div class="scheduleview selectedsubdiv">
+            <button class="download" onclick="downloadSchedule()">Download Schedule</button>
+            <br />
+            <div class="selectedfinal" hidden>
+                <label class="selectedlabel">Selected Final Project</label>
+            </div>
+            <label class="selectedlabel">Selected Courses</label>
+            <div class="courseoptions">
+            </div>
+            <label class="prevlabel">Previously Taken Courses</label>
+            <div class="prevcourses">
+                <div class="prevcourse">
+                    <button class="removeprev" onclick="removeParent(this, true)" disabled>-</button>
+                    <input type="text" onchange="removeParent(this, false)" />
+                    <button class="addnext" onclick="duplicateSelf(this)">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="courseselection subarea">
+        <input class="filter" type="text" oninput="filterCourses(this)" placeholder="Search for a course" />
+        <div class="courses">
+            @foreach (Course thisCourse in GetCatalog())
+            {
+                <div class="course" id="@thisCourse.AREA@thisCourse.ID" data-credit="@thisCourse.CREDITS" data-prereq="@thisCourse.PREREQ" data-rec="@thisCourse.REC">
+                    <input type="checkbox" class="coursecheckbox" oninput="modifyCourseScheduling(this); updateCreditCount(this);" />
+                    <label class="courselabel" onclick="this.parentElement.querySelector('.courseinfo').toggleAttribute('hidden')">
+                        @thisCourse.AREA @thisCourse.ID - @thisCourse.NAME
+                    </label>
+                    <div class="courseinfo" hidden>
+                        <label class="creditlabel">
+                            @{
+                                string creditStr = "";
+                                creditStr = thisCourse.CREDITS == "1" ? "(1 credit)" : (thisCourse.CREDITS == "0" || thisCourse.CREDITS == "" || thisCourse.CREDITS == null) ? "(0 credits)" : $"({thisCourse.CREDITS} credits)";
+                                <text>@creditStr</text>
+                            }
+                        </label>
+                        <p class="description">
+                            @thisCourse.DESCRIPTION
+                        </p>
+                        <p class="recprereq">
+                            @if (thisCourse.PREREQ != "[]" && thisCourse.PREREQ != "" && thisCourse.PREREQ != null)
+                            {
+                                <label class="prereqlabel">Prerequisites</label>
+                                <div class="prereqs">
+                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.PREREQ!).EnumerateArray())
+                                    {
+                                        <div class="prereqgroup">
+                                            @{
+                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                @str
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (thisCourse.REC != "[]" && thisCourse.REC != "" && thisCourse.REC != null)
+                            {
+                                <label>Recommended Background</label>
+                                <div class="recs">
+                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.REC!).EnumerateArray())
+                                    {
+                                        <div class="recgroup">
+                                            @{
+                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                @str
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>

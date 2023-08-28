@@ -1,0 +1,1025 @@
+﻿@using static Advising_Tool.Views.Home.Functions
+@using System.Text.Json
+
+@model GraduateSchedule
+<head>
+    <script src="~/js/global.js"></script>
+    <script src="~/js/gradscript.js"></script>
+    <link rel="stylesheet" href="~/css/gradreq.css" asp-append-version="true" />
+    <script src="https://unpkg.com/pdf-lib"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+    <link rel="icon" href="./favicon.ico" />
+    <title>Graduate Schedule - Course Selection</title>
+</head>
+<body>
+    <div id="mydiv" hidden>
+        <div id="mydivheader">Click here to move</div>
+        <form class="infoenterform">
+            <div>
+                <label for="infoentername">Name: </label>
+                <input type="text" id="infoentername" />
+            </div>
+            <div>
+                <label for="infoenterid">WPI ID: </label>
+                <input type="text" id="infoenterid" />
+            </div>
+            <div>
+                <label for="infoenteremail">Email: </label>
+                <input type="email" id="infoenteremail" />
+            </div>
+            <div>
+                <label for="infoenterdegree">Previous Degrees: </label>
+                <input type="text" id="infoenterdegree" />
+            </div>
+            <div>
+                <label for="infoenterentry">Entry Date: </label>
+                <input type="date" id="infoenterentry" />
+            </div>
+            <div>
+                <label for="infoentercomp">Expected Completion Date: </label>
+                <input type="date" id="infoentercomp" />
+            </div>
+            <div>
+                <label for="infoenterprog">Program: </label>
+                <input type="text" id="infoenterprog" />
+            </div>
+            <div>
+                <label for="infoenteradvisor">Advisor: </label>
+                <input type="text" id="infoenteradvisor" />
+            </div>
+        </form>
+        <div class="buttons">
+            <button type="button" onclick="downloadSchedulePoSPDF();">Submit</button>
+            <button type="button" onclick="document.querySelector('.infoenter').setAttribute('hidden', '')">Cancel</button>
+        </div>
+    </div>
+    <div class="degreeinfo" data-area="@Model.AREA" data-longname="@Model.LONGNAME">
+        <div class="label">
+            <h class="title">Area of Study</h><br />
+            <i>@GetStudyAreaName(Model.AREA!) (@Model.AREA)</i>
+        </div>
+        <div class="label">
+            <h class="title">Degree Name</h><br />
+            <i>@Model.LONGNAME (@Model.DEGREE)</i>
+        </div>
+    </div>
+    <div class="creditcounter" style="text-align:center; width:80%;" data-credits="0">
+        0 credits
+    </div>
+
+    <div class="separator"></div>
+    <div class="butselbar">
+        <div class="butsel" active="true" onclick="switchVisibleSection('.courseselection', this); window.document.title = 'Graduate Schedule - Course Selection';">
+            Course Selection
+        </div>
+        @if (Model.FINAL != null && Model.FINAL != "" && Model.FINAL != "[]")
+        {
+            <div class="butsel" active="false" onclick="switchVisibleSection('.finalproject', this); window.document.title = 'Graduate Schedule - Final Project';">
+                Final Project
+            </div>
+        }
+        <div class="butsel" active="false" onclick="switchVisibleSection('.selectedcourses', this); window.document.title = 'Graduate Schedule - Selected Courses';">
+            Selected Courses
+        </div>
+        <div class="butsel" active="false" onclick="if(checkAllCourseSections()) {switchVisibleSection('.advisorapproval', this); window.document.title = 'Graduate Schedule - Advisor Approval';}">
+            Advisor Approval
+        </div>
+        @if (Model.NOTES != "" && Model.NOTES != null)
+        {
+            <div class="butsel" active="false" onclick="switchVisibleSection('.notes', this); window.document.title = 'Graduate Schedule - Degree Notes';">
+                Degree Notes
+            </div>
+        }
+
+    </div>
+    <div class="selectedcourses subarea" hidden>
+        <div class="scheduleyear selectedsubdiv">
+            <div class="year" data-hidechildren="false">
+                <label class="yearlabel" onclick="this.parentElement.querySelectorAll('.semesterdiv').forEach(t => t.toggleAttribute('hidden'))">Year 1</label>
+                <div class="semesterdiv">
+                    <label class="semesterlabel">Fall Semester</label>
+                    <div class="semester">
+                        <div class="semestercourses"></div>
+                        <div class="semesteradd" onclick="addSelectedCourse(this)">
+                            Add Selected Course
+                        </div>
+                    </div>
+                </div>
+                <div class="semesterdiv">
+                    <label class="semesterlabel">Spring Semester</label>
+                    <div class="semester">
+                        <div class="semestercourses"></div>
+                        <div class="semesteradd" onclick="addSelectedCourse(this)">
+                            Add Selected Course
+                        </div>
+                    </div>
+                </div>
+                <button class="removeyear" onclick="removeYear(this)" hidden>Remove Year</button>
+                <button class="addyear" onclick="addYear(this)">Add Year</button>
+            </div>
+        </div>
+        <div class="verticalspacer"></div>
+        <div class="scheduleview selectedsubdiv">
+            <button onclick="document.getElementById('mydiv').removeAttribute('hidden')">Download Plan of Study</button>
+            <div class="selectedfinal" hidden>
+                <label class="selectedlabel">Selected Final Project</label>
+            </div>
+            <label class="selectedlabel">Selected Courses</label>
+            <div class="courseoptions">
+            </div>
+            <label class="prevlabel">Previously Taken Courses</label>
+            <div class="prevcourses">
+                <div class="prevcourse">
+                    <button class="removeprev" onclick="removeParent(this, true)" disabled>-</button>
+                    <input type="text" onchange="removeParent(this, false)" />
+                    <button class="addnext" onclick="duplicateSelf(this)">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="advisorapproval subarea" hidden>
+        <form class="emailform" onchange="generateMailtoHref()">
+            <label for="email">
+                <strong>
+                    Recipient:
+                </strong>
+            </label>
+            <input type="email" id="email" />
+            <br />
+            <div class="spacer4"></div>
+            <div class="custommsgdiv">
+                <label for="custommsg">
+                    <strong>
+                        Message:
+                    </strong>
+                </label>
+                <textarea oninput="growText(this)" id="custommsg" placeholder="Enter a message for your advisor."></textarea>
+            </div>
+            <div class="spacer4"></div>
+            <div class="emailpreview" readonly>
+            </div>
+            <a class="sendemail" onclick="generateMailtoHref()">
+                Submit to Advisor
+            </a>
+        </form>
+    </div>
+    <div class="finalproject subarea" hidden>
+        @if (Model.FINAL != null && Model.FINAL != "" && Model.FINAL != "[]")
+        {
+            foreach (JsonElement finalOption in ParseJson<JsonElement>(Model.FINAL!).EnumerateArray())
+            {
+                <div class="finaloption" data-name="@finalOption.GetProperty("NAME")">
+                    <input type="checkbox" class="finalcheck" onclick="updateFinalOptions(this); updateGlobal();" />
+                    <label class="finaloptionlabel">@finalOption.GetProperty("NAME")</label>
+                    @foreach (JsonElement finalSection in finalOption.GetProperty("SECTIONS").EnumerateArray())
+                    {
+                        int MIN = finalSection.GetProperty("MIN").GetInt32();
+                        int MAX = finalSection.GetProperty("MAX").GetInt32();
+                        int NUM = finalSection.GetProperty("NUM").GetInt32();
+                        <div class="finalsection" data-min=@MIN data-max=@MAX data-num=@NUM data-curnum="0" data-current="0">
+                            @if (NUM != 0)
+                            {
+                                <label class="finalcreditlabel">
+                                    <b>Times Taken: </b>@NUM
+                                </label>
+                                @foreach (JsonElement finalCourseGroup in finalSection.GetProperty("COURSES").EnumerateArray())
+                                {
+                                    <div class="finalcoursegroup" data-parent="@finalOption.GetProperty("NAME")">
+                                        @foreach (JsonElement finalCourse in finalCourseGroup.EnumerateArray())
+                                        {
+                                            string AREA = finalCourse.GetProperty("AREA").ToString(), ID = finalCourse.GetProperty("ID").ToString();
+                                            var CMIN = finalCourse.GetProperty("MIN").ToString();
+                                            var CMAX = finalCourse.GetProperty("MAX").ToString();
+                                            <div class="finalcourse" data-area=@AREA data-id=@ID data-min=@CMIN data-max=@CMAX>
+                                                <input type="checkbox" disabled oninput="if(addFinalCourse(this)){ updateElectiveCredits(this); updateGlobalCredits(this); updateFinalCredits(this.parentElement, this.checked); updateGlobal(); setFinalProj(this)}" />
+                                                <b>
+                                                    @AREA @ID - @GetCourseInfo(AREA, ID).NAME<br />
+                                                </b>
+                                                @if (CMIN != CMAX)
+                                                {
+                                                    <text>
+                                                        @CMIN - @CMAX
+                                                    </text>
+                                                }
+                                                else
+                                                {
+                                                    if (CMIN == "1")
+                                                    {
+                                                        <text>
+                                                            @CMIN time
+                                                        </text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <text>
+                                                            @CMIN times
+                                                        </text>
+                                                    }
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <label class="finalcreditlabel">
+                                    <b>Credits: </b>
+                                    @if (MIN == MAX)
+                                    {
+                                        <text>
+                                            @MIN
+                                        </text>
+                                    }
+                                    else
+                                    {
+                                        <text>
+                                            @MIN - @MAX
+                                        </text>
+                                    }
+                                </label>
+                                @foreach (JsonElement finalCourseGroup in finalSection.GetProperty("COURSES").EnumerateArray())
+                                {
+                                    <div class="finalcoursegroup" data-parent="@finalOption.GetProperty("NAME")">
+                                        @foreach (JsonElement finalCourse in finalCourseGroup.EnumerateArray())
+                                        {
+                                            string AREA = finalCourse.GetProperty("AREA").ToString(), ID = finalCourse.GetProperty("ID").ToString();
+                                            var CMIN = finalCourse.GetProperty("MIN").ToString();
+                                            var CMAX = finalCourse.GetProperty("MAX").ToString();
+                                            <div class="finalcourse" data-area=@AREA data-id=@ID data-min=@CMIN data-max=@CMAX>
+                                                <input type="checkbox" disabled oninput="if(addFinalCourse(this)){ updateElectiveCredits(this); updateGlobalCredits(this); updateFinalCredits(this.parentElement, this.checked); updateGlobal(); setFinalProj(this)}" />
+                                                <b>
+                                                    @AREA @ID - @GetCourseInfo(AREA, ID).NAME <br />
+                                                </b>
+                                                @if (CMIN != CMAX)
+                                                {
+                                                    <text>
+                                                        @CMIN - @CMAX credits
+                                                    </text>
+                                                }
+                                                else
+                                                {
+                                                    if (CMIN == "1")
+                                                    {
+                                                        <text>
+                                                            @CMIN credit
+                                                        </text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <text>
+                                                            @CMIN credits
+                                                        </text>
+                                                    }
+                                                }
+                                            </div>
+                                            if (!finalCourse.Equals(finalCourseGroup.EnumerateArray().Last()))
+                                            {
+                                                <div class="spacer"></div>
+                                            }
+                                        }
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+
+    <div class="notes subarea">
+        @foreach (string obj in Model.NOTES!.Split("-"))
+        {
+            if (obj != "")
+            {
+                <p>- @obj</p>
+            }
+        }
+    </div>
+    <div class="courseselection subarea">
+        <div class="selectionbuttons">
+            @{
+                JsonElement elective = ParseJson<JsonElement>(Model.ELECTIVE!);
+                if (Model.COURSES != null && Model.COURSES != "" && Model.COURSES != "[]")
+                {
+                    <div class="selectionbutton" onclick="switchVisibleSubsection('.gencourses', this);">
+                        General Courses
+                    </div>
+                }
+                if (elective.GetProperty("APPROVED").ToString() != "0" || elective.GetProperty("FREE").ToString() != "0" || elective.GetProperty("RELATED").ToString() != "0" || Model.FOCUS != "")
+                {
+                    <div class="selectionbutton" onclick="switchVisibleSubsection('.electives', this)">
+                        Electives
+                    </div>
+                }
+                if (Model.SPECIALTY != null && Model.SPECIALTY != "" && Model.SPECIALTY != "[]")
+                {
+                    <div class="selectionbutton" onclick="switchVisibleSubsection('.specialty', this)">
+                        Specialty
+                    </div>
+                }
+                if (Model.DEPTH != null && Model.DEPTH != "" && Model.DEPTH != "[]")
+                {
+                    <div class="selectionbutton" onclick="switchVisibleSubsection('.depths', this)">
+                        Depth Selection
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="gencourses coursesubsect" hidden>
+            @if (Model.COURSES != "" && Model.COURSES != null && Model.COURSES != "[]")
+            {
+                foreach (JsonElement courseArea in ParseJson<JsonElement>(Model.COURSES!).EnumerateArray())
+                {
+                    var credits = courseArea.GetProperty("CREDITS");
+                    <div class="coursesarea" data-credits=@credits data-creditsdef=@credits data-current="0">
+                        <label class="arealabel">
+                            <label class="minimize" onclick="minimizeCourses(this)" hidecourses="false">-</label>
+                            <label class="credits">@courseArea.GetProperty("AREA") - @credits credits</label>
+                        </label>
+                        <div class="areacourses">
+                            @{
+                                var groups = courseArea.GetProperty("OPTIONS").EnumerateArray();
+                                foreach (JsonElement courseGroup in groups)
+                                {
+                                    <div class="coursegroup">
+                                        @foreach (JsonElement course in courseGroup.EnumerateArray())
+                                        {
+                                            Course thisCourse = GetCourseInfo(course.GetProperty("AREA").ToString(), course.GetProperty("ID").ToString());
+                                            <div class="course" id="@thisCourse.AREA@thisCourse.ID" data-area="@thisCourse.AREA" data-id="@thisCourse.ID" data-credit="@thisCourse.CREDITS" data-creditdef="@thisCourse.CREDITS" data-prereq="@thisCourse.PREREQ" data-rec="@thisCourse.REC" data-sametime="[]" data-prereqcopy="@thisCourse.PREREQ">
+                                                <input type="checkbox" class="coursecheckbox" oninput="if(modifyCourseScheduling(this)) {hideDuplicate(this); updateCreditCount(this); disableCoursesInGroup(this); toggleCrange(this);}" />
+                                                <label class="courselabel" onclick="this.parentElement.querySelector('.courseinfo').toggleAttribute('hidden'); updateGlobal()">
+                                                    @thisCourse.AREA @thisCourse.ID - @thisCourse.NAME
+                                                </label>
+                                                @if (Model.AREA == thisCourse.AREA && thisCourse.WAIVE != null && thisCourse.WAIVE != "")
+                                                {
+                                                    <label class="coursewaive">
+                                                        <strong>Waive Options:</strong>
+                                                        <select oninput="waiveCourseUpdate(this)">
+                                                            <option data-type="NONE">Don't waive</option>
+                                                            @foreach (JsonElement option in ParseJson<JsonElement>(thisCourse.WAIVE).EnumerateArray())
+                                                            {
+                                                                <option data-type="@option.GetProperty("TYPE")" data-course="@option.GetProperty("COURSE")">@option.GetProperty("NAME")</option>
+                                                            }
+                                                        </select>
+                                                        <a href="@thisCourse.WAIVELINK" target="_blank">Waiver Link</a>
+                                                    </label>
+                                                }
+                                                @if (thisCourse.CRANGE != "0")
+                                                {
+                                                    string[] split = thisCourse.CRANGE!.Split("-");
+                                                    <div class="crangediv">
+                                                        <label>
+                                                            <strong>
+                                                                Credit:
+                                                            </strong>
+                                                        </label>
+                                                        <input type="range" class="crange" value="@thisCourse.CREDITS" onchange="crangeUpdateFunction(this)" min="@split[0]" max="@split[1]" oninput="this.nextElementSibling.value = this.value" />
+                                                        <output>@thisCourse.CREDITS</output>
+                                                    </div>
+                                                }
+                                                <div class="courseinfo" hidden>
+                                                    <label class="creditlabel">
+                                                        @{
+                                                            string creditStr = "";
+                                                            creditStr = thisCourse.CREDITS == "1" ? "(1 credit)" : (thisCourse.CREDITS == "0" || thisCourse.CREDITS == "" || thisCourse.CREDITS == null) ? "(0 credits)" : $"({thisCourse.CREDITS} credits)";
+                                                            <text>@creditStr</text>
+                                                        }
+                                                    </label>
+                                                    <p class="description">
+                                                        @thisCourse.DESCRIPTION
+                                                    </p>
+                                                    <p class="recprereq">
+                                                        @if (thisCourse.PREREQ != "[]" && thisCourse.PREREQ != "" && thisCourse.PREREQ != null)
+                                                        {
+                                                            <label class="prereqlabel">Prerequisites</label>
+                                                            <div class="prereqs">
+                                                                @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.PREREQ!).EnumerateArray())
+                                                                {
+                                                                    <div class="prereqgroup">
+                                                                        @{
+                                                                            var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                            @str
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        }
+                                                        @if (thisCourse.REC != "[]" && thisCourse.REC != "" && thisCourse.REC != null)
+                                                        {
+                                                            <label>Recommended Background</label>
+                                                            <div class="recs">
+                                                                @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.REC!).EnumerateArray())
+                                                                {
+                                                                    <div class="recgroup">
+                                                                        @{
+                                                                            var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                            @str
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        }
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    if (courseGroup.ToString() != groups.Last().ToString())
+                                    {
+                                        <div class="spacer"></div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="electives coursesubsect" hidden>
+            @{
+                JsonElement ELECTIVE = ParseJson<JsonElement>(Model.ELECTIVE!);
+                int FREE = int.Parse(ELECTIVE.GetProperty("FREE").ToString()), RELATED = int.Parse(ELECTIVE.GetProperty("RELATED").ToString()), APPROVED = int.Parse(ELECTIVE.GetProperty("APPROVED").ToString());
+                if (FREE > 0)
+                {
+                    <div class="freeelectives electivearea">
+                        <label class="arealabel">Free Electives: @FREE credits</label>
+                        <input class="filter" type="text" oninput="filterCourses(this)" placeholder="Search for a course" />
+                        <div class="courses" data-credit="@FREE" data-creditdef="@FREE" data-current="0">
+                            @foreach (Course thisCourse in GetCatalog().Where(course => !course.NAME!.ToLower().Contains("thesis") && !course.NAME!.ToLower().Contains("dissertation") && !course.NAME!.ToLower().Contains("capstone") && !course.NAME!.ToLower().Contains("qualifying") && !course.NAME!.ToLower().Contains("internship") && !course.NAME!.ToLower().Contains("seminar") && !course.NAME!.ToLower().Contains("research") && !course.NAME!.ToLower().Contains("independent")))
+                            {
+                                <div class="course" id="@thisCourse.AREA@thisCourse.ID" data-area="@thisCourse.AREA" data-id="@thisCourse.ID" data-credit="@thisCourse.CREDITS" data-prereq="@thisCourse.PREREQ" data-rec="@thisCourse.REC" data-sametime="[]">
+                                    <input type="checkbox" class="coursecheckbox" oninput="if(modifyCourseScheduling(this)) {hideDuplicate(this); updateCreditCountElectives(this); toggleCrange(this); updateGlobal(); }" />
+                                    <label class="courselabel" onclick="this.parentElement.querySelector('.courseinfo').toggleAttribute('hidden')">
+                                        @thisCourse.AREA @thisCourse.ID - @thisCourse.NAME
+                                    </label>
+                                    @if (thisCourse.CRANGE != "0")
+                                    {
+                                        string[] split = thisCourse.CRANGE!.Split("-");
+                                        <div class="crangediv">
+                                            <label>
+                                                <strong>
+                                                    Credit:
+                                                </strong>
+                                            </label>
+                                            <input type="range" class="crange" value="@thisCourse.CREDITS" onchange="crangeUpdateFunction(this)" min="@split[0]" max="@split[1]" oninput="this.nextElementSibling.value = this.value" />
+                                            <output>@thisCourse.CREDITS</output>
+                                        </div>
+                                    }
+                                    <div class="courseinfo" hidden>
+                                        <label class="creditlabel">
+                                            @{
+                                                string creditStr = "";
+                                                creditStr = thisCourse.CREDITS == "1" ? "(1 credit)" : (thisCourse.CREDITS == "0" || thisCourse.CREDITS == "" || thisCourse.CREDITS == null) ? "(0 credits)" : $"({thisCourse.CREDITS} credits)";
+                                                <text>@creditStr</text>
+                                            }
+                                        </label>
+                                        <p class="description">
+                                            @thisCourse.DESCRIPTION
+                                        </p>
+                                        <p class="recprereq">
+                                            @if (thisCourse.PREREQ != "[]" && thisCourse.PREREQ != "" && thisCourse.PREREQ != null)
+                                            {
+                                                <label class="prereqlabel">Prerequisites</label>
+                                                <div class="prereqs">
+                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.PREREQ!).EnumerateArray())
+                                                    {
+                                                        <div class="prereqgroup">
+                                                            @{
+                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                @str
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            @if (thisCourse.REC != "[]" && thisCourse.REC != "" && thisCourse.REC != null)
+                                            {
+                                                <label>Recommended Background</label>
+                                                <div class="recs">
+                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.REC!).EnumerateArray())
+                                                    {
+                                                        <div class="recgroup">
+                                                            @{
+                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                @str
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                if (RELATED > 0)
+                {
+                    <div class="relatedelectives electivearea">
+                        <label class="arealabel">Core Electives: @RELATED credits</label>
+                        <input class="filter" type="text" oninput="filterCourses(this)" placeholder="Search for a course" />
+                        <div class="courses" data-credit="@RELATED" data-creditdef="@RELATED" data-current="0">
+                            @foreach (Course thisCourse in GetCatalog().Where(course => course.AREA == Model.AREA && (!(int.Parse(course.ID!) > 590) || course.ID == "595")))
+                            {
+                                <div class="course" id="@thisCourse.AREA@thisCourse.ID" data-area="@thisCourse.AREA" data-id="@thisCourse.ID" data-credit="@thisCourse.CREDITS" data-prereq="@thisCourse.PREREQ" data-rec="@thisCourse.REC" data-sametime="[]">
+                                    <input type="checkbox" class="coursecheckbox" oninput="if(modifyCourseScheduling(this)){ hideDuplicate(this); updateCreditCountElectives(this); toggleCrange(this); updateGlobal(); }" />
+                                    <label class="courselabel" onclick="this.parentElement.querySelector('.courseinfo').toggleAttribute('hidden')">
+                                        @thisCourse.AREA @thisCourse.ID - @thisCourse.NAME
+                                    </label>
+                                    @if (thisCourse.CRANGE != "0" && Model.AREA != "RBE")
+                                    {
+                                        string[] split = thisCourse.CRANGE!.Split("-");
+                                        <div class="crangediv">
+                                            <label>
+                                                <strong>
+                                                    Credit:
+                                                </strong>
+                                            </label>
+                                            <input type="range" class="crange" value="@thisCourse.CREDITS" onchange="crangeUpdateFunction(this)" min="@split[0]" max="@split[1]" oninput="this.nextElementSibling.value = this.value" />
+                                            <output>@thisCourse.CREDITS</output>
+                                        </div>
+                                    }
+                                    <div class="courseinfo" hidden>
+                                        <label class="creditlabel">
+                                            @{
+                                                string creditStr = "";
+                                                creditStr = thisCourse.CREDITS == "1" ? "(1 credit)" : (thisCourse.CREDITS == "0" || thisCourse.CREDITS == "" || thisCourse.CREDITS == null) ? "(0 credits)" : $"({thisCourse.CREDITS} credits)";
+                                                <text>@creditStr</text>
+                                            }
+                                        </label>
+                                        <p class="description">
+                                            @thisCourse.DESCRIPTION
+                                        </p>
+                                        <p class="recprereq">
+                                            @if (thisCourse.PREREQ != "[]" && thisCourse.PREREQ != "" && thisCourse.PREREQ != null)
+                                            {
+                                                <label class="prereqlabel">Prerequisites</label>
+                                                <div class="prereqs">
+                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.PREREQ!).EnumerateArray())
+                                                    {
+                                                        <div class="prereqgroup">
+                                                            @{
+                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                @str
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            @if (thisCourse.REC != "[]" && thisCourse.REC != "" && thisCourse.REC != null)
+                                            {
+                                                <label>Recommended Background</label>
+                                                <div class="recs">
+                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.REC!).EnumerateArray())
+                                                    {
+                                                        <div class="recgroup">
+                                                            @{
+                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                @str
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                if (APPROVED > 0)
+                {
+                    <div class="approvedelectives electivearea">
+                        <label class="arealabel">Committee-Approved Electives: @APPROVED credits</label>
+                        <input class="filter" type="text" oninput="filterCourses(this)" placeholder="Search for a course" />
+                        <div class="courses" data-credit="@APPROVED" data-creditdef="@APPROVED" data-current="0">
+                            @foreach (Course thisCourse in GetCatalog())
+                            {
+                                <div class="course" id="@thisCourse.AREA@thisCourse.ID" data-area="@thisCourse.AREA" data-id="@thisCourse.ID" data-credit="@thisCourse.CREDITS" data-prereq="@thisCourse.PREREQ" data-rec="@thisCourse.REC" data-sametime="[]">
+                                    <input type="checkbox" class="coursecheckbox" oninput="if(modifyCourseScheduling(this)) {hideDuplicate(this); updateCreditCountElectives(this); toggleCrange(this); updateGlobal(); }" />
+                                    <label class="courselabel" onclick="this.parentElement.querySelector('.courseinfo').toggleAttribute('hidden')">
+                                        @thisCourse.AREA @thisCourse.ID - @thisCourse.NAME
+                                    </label>
+                                    @if (thisCourse.CRANGE != "0")
+                                    {
+                                        string[] split = thisCourse.CRANGE!.Split("-");
+                                        <div class="crangediv">
+                                            <label>
+                                                <strong>
+                                                    Credit:
+                                                </strong>
+                                            </label>
+                                            <input type="range" class="crange" value="@thisCourse.CREDITS" onchange="crangeUpdateFunction(this)" min="@split[0]" max="@split[1]" oninput="this.nextElementSibling.value = this.value" />
+                                            <output>@thisCourse.CREDITS</output>
+                                        </div>
+                                    }
+                                    <div class="courseinfo" hidden>
+                                        <label class="creditlabel">
+                                            @{
+                                                string creditStr = "";
+                                                creditStr = thisCourse.CREDITS == "1" ? "(1 credit)" : (thisCourse.CREDITS == "0" || thisCourse.CREDITS == "" || thisCourse.CREDITS == null) ? "(0 credits)" : $"({thisCourse.CREDITS} credits)";
+                                                <text>@creditStr</text>
+                                            }
+                                        </label>
+                                        <p class="description">
+                                            @thisCourse.DESCRIPTION
+                                        </p>
+                                        <p class="recprereq">
+                                            @if (thisCourse.PREREQ != "[]" && thisCourse.PREREQ != "" && thisCourse.PREREQ != null)
+                                            {
+                                                <label class="prereqlabel">Prerequisites</label>
+                                                <div class="prereqs">
+                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.PREREQ!).EnumerateArray())
+                                                    {
+                                                        <div class="prereqgroup">
+                                                            @{
+                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                @str
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            @if (thisCourse.REC != "[]" && thisCourse.REC != "" && thisCourse.REC != null)
+                                            {
+                                                <label>Recommended Background</label>
+                                                <div class="recs">
+                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.REC!).EnumerateArray())
+                                                    {
+                                                        <div class="recgroup">
+                                                            @{
+                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                @str
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                if (Model.FOCUS != "" && Model.FOCUS != "[]" && Model.FOCUS != null)
+                {
+                    <div class="focuselectives electivearea">
+                        @{
+                            JsonElement FOCUS = ParseJson<JsonElement>(Model.FOCUS!);
+                            var focusArray = FOCUS.EnumerateArray();
+                            foreach (JsonElement focus in focusArray)
+                            {
+                                List<string> areas = new();
+                                foreach (var obj in focus.GetProperty("AREAS").EnumerateArray())
+                                {
+                                    areas.Add(obj.ToString());
+                                }
+                                string areastring = "[";
+                                foreach (string areaStr in areas)
+                                {
+                                    areastring += $"\"{areaStr}\"";
+                                    if (areaStr != areas.Last())
+                                    {
+                                        areastring += ",";
+                                    }
+                                }
+                                areastring += "]";
+                                <div class="focussubdiv" data-areas="@areastring">
+                                    @{
+                                        var areaString = String.Join(", ", focus.GetProperty("AREAS").EnumerateArray().Select(p => p));
+                                        JsonElement focusname;
+                                        if (focus.TryGetProperty("NAME", out focusname))
+                                        {
+                                            areaString = focusname.ToString();
+                                        }
+                                        <label class="arealabel">
+                                            <label class="minimize" onclick="minimizeCoursesTwo(this)">
+                                                -
+                                            </label>
+                                            <label class="credits">@areaString - @focus.GetProperty("CREDIT") credits</label>
+                                        </label>
+                                        <input class="filter" type="text" oninput="filterCourses(this)" placeholder="Search for a course" />
+                                        <div class="filterbuttons">
+                                            <button class="filterbutton" data-area="all" onclick="filterFocusButton(this)">
+                                                All
+                                            </button>
+                                            @foreach (JsonElement obj in focus.GetProperty("AREAS").EnumerateArray())
+                                            {
+                                                <button class="filterbutton" data-area="@obj" onclick="filterFocusButton(this)">
+                                                    @obj.ToString()
+                                                </button>
+                                            }
+                                        </div>
+                                        <div class="courses" data-credit="@focus.GetProperty("CREDIT").GetInt32()" data-creditdef="@focus.GetProperty("CREDIT").GetInt32()" data-current="0">
+                                            @foreach (Course thisCourse in GetCatalog().Where(course => (course.AREA! == Model.AREA && !course.NAME!.ToLower().Contains("dissertation")) || (areas.Contains(course.AREA!) && !course.NAME!.ToLower().Contains("seminar") && !course.NAME!.ToLower().Contains("dissertation") && !course.NAME!.ToLower().Contains("thesis") && !course.NAME!.ToLower().Contains("capstone"))))
+                                            {
+                                                <div class="course" id="@thisCourse.AREA@thisCourse.ID" data-area="@thisCourse.AREA" data-id="@thisCourse.ID" data-credit="@thisCourse.CREDITS" data-prereq="@thisCourse.PREREQ" data-rec="@thisCourse.REC" data-sametime="[]" data-prereqcopy="@thisCourse.PREREQ">
+                                                    <input type="checkbox" class="coursecheckbox" oninput="if(modifyCourseScheduling(this)) { hideDuplicate(this); updateCreditCountOther(this); toggleCrange(this); updateGlobal(); }" />
+                                                    <label class="courselabel" onclick="this.parentElement.querySelector('.courseinfo').toggleAttribute('hidden')">
+                                                        @thisCourse.AREA @thisCourse.ID - @thisCourse.NAME
+                                                    </label>
+                                                    @if (thisCourse.CRANGE != "0")
+                                                    {
+                                                        string[] split = thisCourse.CRANGE!.Split("-");
+                                                        <div class="crangediv">
+                                                            <label>
+                                                                <strong>
+                                                                    Credit:
+                                                                </strong>
+                                                            </label>
+                                                            <input type="range" class="crange" value="@thisCourse.CREDITS" onchange="crangeUpdateFunction(this)" min="@split[0]" max="@split[1]" oninput="this.nextElementSibling.value = this.value" />
+                                                            <output>@thisCourse.CREDITS</output>
+                                                        </div>
+                                                    }
+                                                    <div class="courseinfo" hidden>
+                                                        <label class="creditlabel">
+                                                            @{
+                                                                string creditStr = "";
+                                                                creditStr = thisCourse.CREDITS == "1" ? "(1 credit)" : (thisCourse.CREDITS == "0" || thisCourse.CREDITS == "" || thisCourse.CREDITS == null) ? "(0 credits)" : $"({thisCourse.CREDITS} credits)";
+                                                                <text>@creditStr</text>
+                                                            }
+                                                        </label>
+                                                        <p class="description">
+                                                            @thisCourse.DESCRIPTION
+                                                        </p>
+                                                        <p class="recprereq">
+                                                            @if (thisCourse.PREREQ != "[]" && thisCourse.PREREQ != "" && thisCourse.PREREQ != null)
+                                                            {
+                                                                <label class="prereqlabel">Prerequisites</label>
+                                                                <div class="prereqs">
+                                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.PREREQ!).EnumerateArray())
+                                                                    {
+                                                                        <div class="prereqgroup">
+                                                                            @{
+                                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                                @str
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            @if (thisCourse.REC != "[]" && thisCourse.REC != "" && thisCourse.REC != null)
+                                                            {
+                                                                <label>Recommended Background</label>
+                                                                <div class="recs">
+                                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.REC!).EnumerateArray())
+                                                                    {
+                                                                        <div class="recgroup">
+                                                                            @{
+                                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                                @str
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                                if (focus.ToString() != focusArray.Last().ToString())
+                                {
+                                    <div class="spacer3"></div>
+                                }
+                            }
+                        }
+                    </div>
+                }
+            }
+        </div>
+        @if (Model.SPECIALTY != null && Model.SPECIALTY != "" && Model.SPECIALTY != "[]")
+        {
+            JsonElement specialty = ParseJson<JsonElement>(Model.SPECIALTY!);
+            <div class="specialty coursesubsect" data-count="0" data-num="@specialty.GetProperty("NUM")" hidden>
+                @{
+                    <label class="specialtylabel">Pick @specialty.GetProperty("NUM") Section(s)</label>
+                    @foreach (JsonElement option in specialty.GetProperty("OPTIONS").EnumerateArray())
+                    {
+                        var credit = option.GetProperty("CREDITS");
+                        <div class="specialtyoption" data-credits="@credit" data-current="0">
+                            <label class="specialtylabel">
+                                <input type="checkbox" onclick="updateCount(this)" />
+                                <label class="credits">@option.GetProperty("NAME") - @credit credits</label>
+                            </label>
+                            <div class="courses">
+                                @{
+                                    var groups = option.GetProperty("COURSES").EnumerateArray();
+                                    foreach (JsonElement courseGroup in groups)
+                                    {
+                                        <div class="coursegroup">
+                                            @foreach (JsonElement course in courseGroup.EnumerateArray())
+                                            {
+                                                Course thisCourse = GetCourseInfo(course.GetProperty("AREA").ToString(), course.GetProperty("ID").ToString());
+                                                <div class="course" id="@thisCourse.AREA@thisCourse.ID" data-area="@thisCourse.AREA" data-id="@thisCourse.ID" data-credit="@thisCourse.CREDITS" data-prereq="@thisCourse.PREREQ" data-rec="@thisCourse.REC" data-sametime="[]" data-prereqcopy="@thisCourse.PREREQ">
+                                                    <input type="checkbox" disabled class="coursecheckbox" oninput="if(modifyCourseScheduling(this)) { hideDuplicate(this); updateCreditCount(this); disableCoursesInGroup(this); toggleCrange(this); updateGlobal(); }" />
+                                                    <label class="courselabel" onclick="this.parentElement.querySelector('.courseinfo').toggleAttribute('hidden')">
+                                                        @thisCourse.AREA @thisCourse.ID - @thisCourse.NAME
+                                                    </label>
+                                                    @if (Model.AREA == thisCourse.AREA && thisCourse.WAIVE != null && thisCourse.WAIVE != "")
+                                                    {
+                                                        <label class="coursewaive">
+                                                            <strong>Waive Options:</strong>
+                                                            <select oninput="waiveCourseUpdate(this)">
+                                                                <option data-type="NONE">Don't waive</option>
+                                                                @foreach (JsonElement option2 in ParseJson<JsonElement>(thisCourse.WAIVE).EnumerateArray())
+                                                                {
+                                                                    <option data-type="@option2.GetProperty("TYPE")" data-course="@option2.GetProperty("COURSE")">@option2.GetProperty("NAME")</option>
+                                                                }
+                                                            </select>
+                                                            <a href="@thisCourse.WAIVELINK" target="_blank">Waiver Link</a>
+                                                        </label>
+                                                    }
+                                                    @if (thisCourse.CRANGE != "0")
+                                                    {
+                                                        string[] split = thisCourse.CRANGE!.Split("-");
+                                                        <div class="crangediv">
+                                                            <label>
+                                                                <strong>
+                                                                    Credit:
+                                                                </strong>
+                                                            </label>
+                                                            <input type="range" class="crange" value="@thisCourse.CREDITS" onchange="crangeUpdateFunction(this)" min="@split[0]" max="@split[1]" oninput="this.nextElementSibling.value = this.value" />
+                                                            <output>@thisCourse.CREDITS</output>
+                                                        </div>
+                                                    }
+                                                    <div class="courseinfo" hidden>
+                                                        <label class="creditlabel">
+                                                            @{
+                                                                string creditStr = "";
+                                                                creditStr = thisCourse.CREDITS == "1" ? "(1 credit)" : (thisCourse.CREDITS == "0" || thisCourse.CREDITS == "" || thisCourse.CREDITS == null) ? "(0 credits)" : $"({thisCourse.CREDITS} credits)";
+                                                                <text>@creditStr</text>
+                                                            }
+                                                        </label>
+                                                        <p class="description">
+                                                            @thisCourse.DESCRIPTION
+                                                        </p>
+                                                        <p class="recprereq">
+                                                            @if (thisCourse.PREREQ != "[]" && thisCourse.PREREQ != "" && thisCourse.PREREQ != null)
+                                                            {
+                                                                <label class="prereqlabel">Prerequisites</label>
+                                                                <div class="prereqs">
+                                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.PREREQ!).EnumerateArray())
+                                                                    {
+                                                                        <div class="prereqgroup">
+                                                                            @{
+                                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                                @str
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            @if (thisCourse.REC != "[]" && thisCourse.REC != "" && thisCourse.REC != null)
+                                                            {
+                                                                <label>Recommended Background</label>
+                                                                <div class="recs">
+                                                                    @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.REC!).EnumerateArray())
+                                                                    {
+                                                                        <div class="recgroup">
+                                                                            @{
+                                                                                var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                                @str
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        if (courseGroup.ToString() != groups.Last().ToString())
+                                        {
+                                            <div class="spacer"></div>
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        }
+        @if (Model.DEPTH != "")
+        {
+            <div class="depths coursesubsect" hidden>
+                @foreach (JsonElement depthSection in ParseJson<JsonElement>(Model.DEPTH!).EnumerateArray())
+                {
+                    var depthName = depthSection.GetProperty("NAME").ToString();
+                    var depthCredits = depthSection.GetProperty("CREDITS").ToString();
+                    <div class="depthoption" data-credits="@depthCredits" data-current="0">
+                        <label class="depthlabel">
+                            <input type="checkbox" onclick="toggleDepthOptions(this)" />
+                            <label class="credits">@depthName - @depthCredits credits</label>
+                        </label>
+                        <div class="courses">
+                            @{
+                                var groups = depthSection.GetProperty("OPTIONS").EnumerateArray();
+                                foreach (JsonElement courseGroup in groups)
+                                {
+                                    <div class="coursegroup">
+                                        @foreach (JsonElement course in courseGroup.EnumerateArray())
+                                        {
+                                            Course thisCourse = GetCourseInfo(course.GetProperty("AREA").ToString(), course.GetProperty("ID").ToString());
+                                            <div class="course" id="@thisCourse.AREA@thisCourse.ID" data-area="@thisCourse.AREA" data-id="@thisCourse.ID" data-credit="@thisCourse.CREDITS" data-prereq="@thisCourse.PREREQ" data-rec="@thisCourse.REC" data-sametime="[]" data-prereqcopy="@thisCourse.PREREQ">
+                                                <input type="checkbox" class="coursecheckbox" oninput="if(modifyCourseScheduling(this)) { hideDuplicate(this); updateCreditCount(this); disableCoursesInGroup(this); toggleCrange(this); updateGlobal(); }" disabled />
+                                                <label class="courselabel" onclick="this.parentElement.querySelector('.courseinfo').toggleAttribute('hidden')">
+                                                    @thisCourse.AREA @thisCourse.ID - @thisCourse.NAME
+                                                </label>
+                                                @if (Model.AREA == thisCourse.AREA && thisCourse.WAIVE != null && thisCourse.WAIVE != "")
+                                                {
+                                                    <label class="coursewaive">
+                                                        <strong>Waive Options:</strong>
+                                                        <select oninput="waiveCourseUpdate(this)">
+                                                            <option data-type="NONE">Don't waive</option>@foreach (JsonElement option in ParseJson<JsonElement>(thisCourse.WAIVE).EnumerateArray())
+                                                            {
+                                                                <option data-type="@option.GetProperty("TYPE")" data-course="@option.GetProperty("COURSE")">@option.GetProperty("NAME")</option>
+                                                            }
+                                                        </select>
+                                                        <a href="@thisCourse.WAIVELINK" target="_blank">Waiver Link</a>
+                                                    </label>
+                                                }
+                                                @if (thisCourse.CRANGE != "0")
+                                                {
+                                                    string[] split = thisCourse.CRANGE!.Split("-");
+                                                    <div class="crangediv">
+                                                        <label>
+                                                            <strong>
+                                                                Credit:
+                                                            </strong>
+                                                        </label>
+                                                        <input type="range" class="crange" value="@thisCourse.CREDITS" onchange="crangeUpdateFunction(this)" min="@split[0]" max="@split[1]" oninput="this.nextElementSibling.value = this.value" />
+                                                        <output>@thisCourse.CREDITS</output>
+                                                    </div>
+                                                }
+                                                <div class="courseinfo" hidden>
+                                                    <label class="creditlabel">
+                                                        @{
+                                                            string creditStr = "";
+                                                            creditStr = thisCourse.CREDITS == "1" ? "(1 credit)" : (thisCourse.CREDITS == "0" || thisCourse.CREDITS == "" || thisCourse.CREDITS == null) ? "(0 credits)" : $"({thisCourse.CREDITS} credits)";
+                                                            <text>@creditStr</text>
+                                                        }
+                                                    </label>
+                                                    <p class="description">
+                                                        @thisCourse.DESCRIPTION
+                                                    </p>
+                                                    <p class="recprereq">
+                                                        @if (thisCourse.PREREQ != "[]" && thisCourse.PREREQ != "" && thisCourse.PREREQ != null)
+                                                        {
+                                                            <label class="prereqlabel">Prerequisites</label>
+                                                            <div class="prereqs">
+                                                                @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.PREREQ!).EnumerateArray())
+                                                                {
+                                                                    <div class="prereqgroup">
+                                                                        @{
+                                                                            var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                            @str
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        }
+                                                        @if (thisCourse.REC != "[]" && thisCourse.REC != "" && thisCourse.REC != null)
+                                                        {
+                                                            <label>Recommended Background</label>
+                                                            <div class="recs">
+                                                                @foreach (JsonElement group in ParseJson<JsonElement>(thisCourse.REC!).EnumerateArray())
+                                                                {
+                                                                    <div class="recgroup">
+                                                                        @{
+                                                                            var str = String.Join(" / ", group.EnumerateArray().Select(p => p.GetProperty("AREA").ToString() + p.GetProperty("ID").ToString()));
+                                                                            @str
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        }
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    if (courseGroup.ToString() != groups.Last().ToString())
+                                    {
+                                        <div class="spacer"></div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</body>

@@ -1,0 +1,99 @@
+﻿@using Advising_Tool.Views.Home;
+@using MySql.Data.MySqlClient
+@using System.Text.RegularExpressions
+@using static Advising_Tool.Views.Home.Functions
+
+@model UndergraduateRequest
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@functions {
+    public TripleEnumerable<string, string, string> gradOptions = GetUndergraduateOptions();
+    public Dictionary<string, string> DegreeOptions()
+    {
+        Dictionary<string, string> ret = new();
+        foreach (var obj in gradOptions)
+        {
+            if (!ret.Keys.Contains(obj.GetFirst()))
+            {
+                ret.Add(obj.GetFirst(), GetStudyAreaName(obj.GetFirst()));
+            }
+        }
+        return ret;
+    }
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/degreeselection.css" asp-append-version="true" />
+    <link rel="icon" href="./favicon.ico" />
+</head>
+<body>
+    <form asp-action="UndergraduateRequest" class="form-horizontal">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="scheduling">
+            <label><b>Area of Study</b></label>
+            <div>
+                <select asp-for="AREA" id="aos" onchange="switchDegree();">
+                    @foreach (var val in DegreeOptions())
+                    {
+                        <option value=@val.Key>@val.Value (@val.Key)</option>
+                    }
+                </select>
+            </div>
+            <label><b>Degree Options</b></label>
+            <div>
+                <select asp-for="TYPE" id="type">
+                    @foreach (Triple<string, string, string> triple in gradOptions)
+                    {
+                        <option value=@triple.GetSecond() data-area=@triple.GetFirst()>@triple.GetThird()</option>
+                    }
+                </select>
+            </div>
+            <button id="submit" type="submit">SUBMIT</button>
+        </div>
+    </form>
+</body>
+<script>
+    window.addEventListener("load", function () {
+        switchDegree();
+
+    }, false);
+    function switchDegree() {
+        var area = document.querySelector("#aos").value;
+        var first = true;
+        document.querySelector("#type").querySelectorAll("option").forEach(option => {
+            if (option.dataset.area !== area) {
+                option.hidden = true;
+            } else {
+                if (first) {
+                    option.selected = true;
+                    first = false;
+                }
+                option.hidden = false;
+            }
+        });
+    }
+    const gcd = (a, b) => {
+        let num = 2, res = 1;
+        while (num <= Math.min(a, b)) {
+            if (a % num === 0 && b % num === 0) {
+                res = num;
+            };
+            num++;
+        };
+        return res;
+    }
+    const sumFrac = (a, b) => {
+        const aDenom = a[1], aNumer = a[0];
+        const bDenom = b[1], bNumer = b[0];
+        let resDenom = aDenom * bDenom;
+        let resNumer = (aDenom * bNumer) + (bDenom * aNumer);
+        const greatestDivisor = gcd(resDenom, resNumer);
+        return [resNumer / greatestDivisor, resDenom / greatestDivisor];
+    };
+    const sumArrayOfFractions = (arr) => {
+        return arr.reduce((acc, val) => sumFrac(acc, val));
+    };
+</script>

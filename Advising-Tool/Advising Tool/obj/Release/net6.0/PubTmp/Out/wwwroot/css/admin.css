@@ -1,0 +1,35 @@
+
+:root {
+    --menu-bg: gray;
+    --menu-font-color: #FFFFFF;
+    --menu-border: black;
+    --menu-bg-selected: #333333;
+    --menu-bg-hover: #52dcff;
+    --menu-bg-selected-chevron: #3cac1a;
+}
+
+body{
+    width:100%;
+    height:100%;
+    text-align:center;
+}
+
+.adminbutton:first-child {
+    margin-top: 50px;
+}
+
+.adminbutton {
+    border-radius: 10px;
+    width: fit-content;
+    background-color: white;
+    padding: 15px 30px 15px 30px;
+    border: 2px outset black;
+    cursor: pointer;
+    margin: 20px;
+}
+
+    .adminbutton:hover {
+        background-color: darkgray;
+        border: 2px inset black;
+        cursor: pointer;
+    }

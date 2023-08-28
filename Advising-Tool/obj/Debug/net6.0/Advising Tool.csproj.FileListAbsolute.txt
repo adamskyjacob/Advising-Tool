@@ -1,0 +1,112 @@
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\appsettings.json
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.staticwebassets.runtime.json
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.exe
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.deps.json
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.runtimeconfig.json
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.pdb
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.csproj.AssemblyReference.cache
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.AssemblyInfoInputs.cache
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.AssemblyInfo.cs
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.csproj.CoreCompileInputs.cache
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.RazorAssemblyInfo.cache
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.RazorAssemblyInfo.cs
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\scopedcss\bundle\Advising Tool.styles.css
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\scopedcss\projectbundle\Advising Tool.bundle.scp.css
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\refint\Advising Tool.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.pdb
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.genruntimeconfig.cache
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\ref\Advising Tool.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.Mvc.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.Razor.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.Helpers.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.WebPages.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.csproj.CopyComplete
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\MySql.Data.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\comerr64.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\gssapi64.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\krb5_64.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\krbcc64.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\docto\Desktop\Advising Tool Refurb\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\appsettings.json
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.staticwebassets.runtime.json
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.exe
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.deps.json
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.runtimeconfig.json
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Advising Tool.pdb
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\K4os.Compression.LZ4.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\K4os.Hash.xxHash.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.Mvc.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.Razor.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.Helpers.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Web.WebPages.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\MySql.Data.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\comerr64.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\gssapi64.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\krb5_64.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win-x64\native\krbcc64.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.csproj.AssemblyReference.cache
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.AssemblyInfoInputs.cache
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.AssemblyInfo.cs
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.csproj.CoreCompileInputs.cache
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.RazorAssemblyInfo.cache
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.RazorAssemblyInfo.cs
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\scopedcss\bundle\Advising Tool.styles.css
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\scopedcss\projectbundle\Advising Tool.bundle.scp.css
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.csproj.CopyComplete
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\refint\Advising Tool.dll
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.pdb
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\Advising Tool.genruntimeconfig.cache
+C:\Users\docto\Desktop\Online Advising Tool\Advising Tool\Advising Tool\obj\Debug\net6.0\ref\Advising Tool.dll

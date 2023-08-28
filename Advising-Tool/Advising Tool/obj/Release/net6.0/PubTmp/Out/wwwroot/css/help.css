@@ -1,0 +1,43 @@
+
+.issuesubmit {
+    margin-left: 3vw;
+    margin-top: 1vw;
+}
+
+    .issuesubmit .issuelabel {
+        font-weight: 600;
+        margin-left: -1vw;
+        color: black;
+        font-size: 25px;
+    }
+
+    .issuesubmit .form {
+        width: 100vw;
+        color: black;
+    }
+
+        .issuesubmit .form input {
+            width: 30vw;
+        }
+
+        .issuesubmit .form textarea {
+            width: 30vw;
+            min-height: 10vw;
+        }
+
+        .issuesubmit .form button {
+            border: 2px outset black;
+            font-weight: 600;
+            border-radius: 6px;
+            margin-left: 1vw;
+            background: green;
+        }
+
+            .issuesubmit .form button:hover {
+                border: 2px inset black;
+            }
+
+    .issuesubmit .subsect label {
+        font-weight: 700;
+        margin-left: 1vw;
+    }
