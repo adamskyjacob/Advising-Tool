@@ -4,7 +4,7 @@
     <View_SelectedScaffolderID>RazorViewEmptyScaffolder</View_SelectedScaffolderID>
     <View_SelectedScaffolderCategoryPath>root/Common/MVC/View</View_SelectedScaffolderCategoryPath>
     <ActiveDebugProfile>Advising_Tool</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Users\docto\Desktop\Advising Tool FINAL\Advising-Tool\Advising Tool\Properties\PublishProfiles\AdvisingTool20230426115233 - Web Deploy3.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\docto\OneDrive\Desktop\Advising Tool FINAL\Advising-Tool\Advising Tool\Properties\PublishProfiles\AdvisingTool20230426115233 - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

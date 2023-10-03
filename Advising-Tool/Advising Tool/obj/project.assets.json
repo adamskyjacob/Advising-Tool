@@ -1658,11 +1658,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Desktop\\Advising Tool FINAL\\Advising-Tool\\Advising Tool\\Advising Tool.csproj",
+      "projectUniqueName": "C:\\Users\\docto\\OneDrive\\Desktop\\Advising Tool FINAL\\Advising-Tool\\Advising Tool\\Advising Tool.csproj",
       "projectName": "Advising Tool",
-      "projectPath": "D:\\Desktop\\Advising Tool FINAL\\Advising-Tool\\Advising Tool\\Advising Tool.csproj",
+      "projectPath": "C:\\Users\\docto\\OneDrive\\Desktop\\Advising Tool FINAL\\Advising-Tool\\Advising Tool\\Advising Tool.csproj",
       "packagesPath": "C:\\Users\\docto\\.nuget\\packages\\",
-      "outputPath": "D:\\Desktop\\Advising Tool FINAL\\Advising-Tool\\Advising Tool\\obj\\",
+      "outputPath": "C:\\Users\\docto\\OneDrive\\Desktop\\Advising Tool FINAL\\Advising-Tool\\Advising Tool\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

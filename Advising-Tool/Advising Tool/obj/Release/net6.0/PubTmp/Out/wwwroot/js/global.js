@@ -104,33 +104,47 @@ function checkAllCourseSections(ug) {
             }
         }
     }
+    if (!(document.querySelector(".courseoptions").lastChild instanceof HTMLElement)) {
+        alert("You haven't selected any courses yet!");
+        return;
+    }
     for (var courses of invalid) {
         if (courses.classList.contains("coursesarea")) {
-            var label = courses.querySelector(".arealabel").querySelector(".credits").cloneNode(true);
-            label.querySelectorAll("label").forEach(t => t.remove());
-            sects += "- " + label.innerHTML.trim();
-            sects += "\n";
-        } else if (courses.classList.contains("courses")) {
-            if (courses.parentElement.classList.contains("focussubdiv")) {
-                var label = courses.parentElement.querySelector("label").querySelector(".credits").cloneNode(true);
-                label.querySelectorAll("label").forEach(t => t.remove());
-                sects += "- " + label.innerHTML.trim();
-                sects += "\n";
-            } else {
-                var label = courses.parentElement.querySelector("label").cloneNode(true);
+            var label = courses.querySelector(".arealabel").querySelector(".credits")?.cloneNode(true);
+            if (label) {
                 label.querySelectorAll("label").forEach(t => t.remove());
                 sects += "- " + label.innerHTML.trim();
                 sects += "\n";
             }
+        } else if (courses.classList.contains("courses")) {
+            if (courses.parentElement.classList.contains("focussubdiv")) {
+                var label = courses.parentElement.querySelector("label").querySelector(".credits")?.cloneNode(true);
+                if (label) {
+                    label.querySelectorAll("label").forEach(t => t.remove());
+                    sects += "- " + label.innerHTML.trim();
+                    sects += "\n";
+                }
+            } else {
+                var label = courses.parentElement.querySelector("label")?.cloneNode(true);
+                if (label) {
+                    label.querySelectorAll("label").forEach(t => t.remove());
+                    sects += "- " + label.innerHTML.trim();
+                    sects += "\n";
+                }
+            }
         } else if (courses.classList.contains("finaloption")) {
-            var label = courses.querySelector(".finaloptionlabel").cloneNode(true);
-            sects += "- " + label.innerHTML.trim();
-            sects += "\n";
+            var label = courses.querySelector(".finaloptionlabel")?.cloneNode(true);
+            if (label) {
+                sects += "- " + label.innerHTML.trim();
+                sects += "\n";
+            }
         } else if (courses.classList.contains("areacourses")) {
-            var label = courses.parentElement.querySelector(".arealabel").cloneNode(true);
-            label.querySelector("label").remove();
-            sects += "- " + label.innerHTML.trim();
-            sects += "\n";
+            var label = courses.parentElement.querySelector(".arealabel")?.cloneNode(true);
+            if (label) {
+                label.querySelector("label").remove();
+                sects += "- " + label.innerHTML.trim();
+                sects += "\n";
+            }
         }
     }
     if (sects !== "") {

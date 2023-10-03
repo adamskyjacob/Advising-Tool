@@ -9,125 +9,125 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Advising_Tool
 build_property.RootNamespace = Advising_Tool
-build_property.ProjectDir = C:\Users\docto\Desktop\Advising Tool FINAL\Advising-Tool\Advising Tool\
+build_property.ProjectDir = C:\Users\docto\OneDrive\Desktop\Advising Tool FINAL\Advising-Tool\Advising Tool\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\docto\Desktop\Advising Tool FINAL\Advising-Tool\Advising Tool
+build_property.MSBuildProjectDirectory = C:\Users\docto\OneDrive\Desktop\Advising Tool FINAL\Advising-Tool\Advising Tool
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddCourseRedirect.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddCourseRedirect.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRDb3Vyc2VSZWRpcmVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddGraduateCourse.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddGraduateCourse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRHcmFkdWF0ZUNvdXJzZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddGraduateSheet.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddGraduateSheet.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRHcmFkdWF0ZVNoZWV0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddGraduateSheetRedirect.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddGraduateSheetRedirect.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRHcmFkdWF0ZVNoZWV0UmVkaXJlY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddUGCourseRedirect.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddUGCourseRedirect.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRVR0NvdXJzZVJlZGlyZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddUndergraduateCourse.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddUndergraduateCourse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRVbmRlcmdyYWR1YXRlQ291cnNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddUndergraduateSheet.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddUndergraduateSheet.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRVbmRlcmdyYWR1YXRlU2hlZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddUndergraduateSheetRedirect.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/AddUndergraduateSheetRedirect.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRVbmRlcmdyYWR1YXRlU2hlZXRSZWRpcmVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/Administration.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/Administration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pbmlzdHJhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/GeneralScheduling.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/GeneralScheduling.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHZW5lcmFsU2NoZWR1bGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/GraduateCatalogView.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/GraduateCatalogView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHcmFkdWF0ZUNhdGFsb2dWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/GraduateRequest.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/GraduateRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHcmFkdWF0ZVJlcXVlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/GraduateScheduling.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/GraduateScheduling.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHcmFkdWF0ZVNjaGVkdWxpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/Help.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/Help.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIZWxwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/HelpMessages.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/HelpMessages.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIZWxwTWVzc2FnZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/HomePageRedirect.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/HomePageRedirect.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lUGFnZVJlZGlyZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/Index.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/ModifyUGCourse.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/ModifyUGCourse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNb2RpZnlVR0NvdXJzZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/Privacy.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/SubmitHelpMessage.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/SubmitHelpMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdWJtaXRIZWxwTWVzc2FnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/UndergraduateCatalogView.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/UndergraduateCatalogView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVbmRlcmdyYWR1YXRlQ2F0YWxvZ1ZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/UndergraduateRequest.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/UndergraduateRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVbmRlcmdyYWR1YXRlUmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/UndergraduateScheduling.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/UndergraduateScheduling.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVbmRlcmdyYWR1YXRlU2NoZWR1bGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/UpdateUGCourse.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Home/UpdateUGCourse.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVcGRhdGVVR0NvdXJzZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Shared/Error.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/_ViewImports.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/_ViewStart.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/docto/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Shared/_Layout.cshtml]
+[C:/Users/docto/OneDrive/Desktop/Advising Tool FINAL/Advising-Tool/Advising Tool/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-dxojem4urw

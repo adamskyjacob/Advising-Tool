@@ -8,11 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Notes.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Notes.txt" />
+    <None Remove=".txt" />
+    <None Remove=".txt.bak" />
   </ItemGroup>
 
   <ItemGroup>
