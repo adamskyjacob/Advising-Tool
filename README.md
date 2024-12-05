@@ -7,5 +7,3 @@ course selection, you can download your selections as a .txt file (or
 specifically for Robotics Engineering M.S., you can download the official
 tracking sheet from WPI with your selections filled out. This was done with
 a PDF form library in JavaScript.
-
-The website can be found [here](https://advisingtool20230426115233.azurewebsites.net).
